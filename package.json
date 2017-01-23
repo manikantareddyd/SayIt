@@ -40,5 +40,5 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "vaakh-mobile-app: An Ionic project"
+  "description": "SayIt: A speech assistant for differently abled."
 }
