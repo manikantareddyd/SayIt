@@ -7,12 +7,55 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>category</ion-title>
+    <ion-title>Edit Category</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addAction(category)">
+      <ion-icon name="add"></ion-icon> action
+    </button>
+  </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="card-background-page">
+  <ion-card>
+    <ion-list no-lines>
+    <ion-item>
+      <ion-label stacked>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="category.title"></ion-input>
+    </ion-item>
+    <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small  icon-left (click)="updateCategory(category)">
+            {{mode}}
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button *ngIf="mode.indexOf('EDIT') > -1" ion-button clear small color="danger" icon-left (click)="deleteCategory(category)">
+            Delete 
+          </button>
+        </ion-col>
+      </ion-row>
+  </ion-list >
+  </ion-card>
+  <ion-list *ngFor="let action of actions" inset>
+    <ion-card>
+      <img src="../../assets/img/bg.png"/>
+      <div class="card-title">{{action['title']}}</div>
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small  icon-left (click)="goToActionPage(action, category, 'EDIT')">
+            <ion-icon name='create'></ion-icon>
+            Edit
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button clear small color="danger" icon-left (click)="deleteAction(action, category)">
+            <ion-icon name='trash'></ion-icon>
+            Delete
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
 </ion-content>

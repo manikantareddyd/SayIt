@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
-import { CategoryPage } from '../category/category';
+import { EditorCategoryPage } from '../category/category';
 /*
   Generated class for the Home page.
 
@@ -34,7 +34,7 @@ export class EditorHomePage {
   
 
   goToCategoryPage(category, mode){
-    this.navCtrl.push(CategoryPage, {
+    this.navCtrl.push(EditorCategoryPage, {
       category: category,
       mode: mode
     });

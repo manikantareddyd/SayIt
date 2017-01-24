@@ -7,12 +7,31 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>action</ion-title>
+    <ion-title>Edit Action</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-card>
+    <ion-list no-lines>
+    <ion-item>
+      <ion-label stacked>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="action.title"></ion-input>
+    </ion-item>
+    <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small  icon-left (click)="updateAction(action, category)">
+            {{mode}}
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button *ngIf="mode.indexOf('EDIT') > -1" ion-button clear small color="danger" icon-left (click)="deleteAction(action)">
+            Delete 
+          </button>
+        </ion-col>
+      </ion-row>
+  </ion-list >
+  </ion-card>
 </ion-content>

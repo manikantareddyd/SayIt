@@ -8,12 +8,21 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-editor-action',
+  selector: 'page-builder-editor-action',
   templateUrl: 'action.html'
 })
-export class ActionPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+export class EditorActionPage {
+  action;
+  category;
+  mode;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams
+    ) {
+    this.action = this.navParams.get('action');
+    this.category = this.navParams.get('category');
+    this.mode = this.navParams.get('mode');
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActionPage');

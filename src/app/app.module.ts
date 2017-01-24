@@ -7,6 +7,8 @@ import { Storage } from '@ionic/storage';
 
 import { BuilderHomePage } from '../pages/builder/home/home';
 import { EditorHomePage } from '../pages/builder/editor/home/home';
+import { EditorCategoryPage } from '../pages/builder/editor/category/category';
+import { EditorActionPage } from '../pages/builder/editor/action/action';
 
 
 
@@ -17,6 +19,8 @@ import { LiveHomePage } from '../pages/live/home/home';
     MyApp,
     BuilderHomePage,
     EditorHomePage,
+    EditorCategoryPage,
+    EditorActionPage,
     LiveHomePage,
   ],
   imports: [
@@ -27,6 +31,8 @@ import { LiveHomePage } from '../pages/live/home/home';
     MyApp,
     BuilderHomePage,
     EditorHomePage,
+    EditorCategoryPage,
+    EditorActionPage,
     LiveHomePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, SayItService, Storage]

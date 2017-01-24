@@ -9,8 +9,8 @@
     <ion-title>Editor</ion-title>
     <ion-buttons end>
       <button ion-button (click)="addCategory()">
-      <ion-icon name="add"></ion-icon>Add
-    </button>
+        <ion-icon name="add"></ion-icon> category
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -23,7 +23,7 @@
       <div class="card-title">{{category['title']}}</div>
       <ion-row no-padding>
         <ion-col>
-          <button ion-button clear small  icon-left (click)="goToCategoryPage(category)">
+          <button ion-button clear small  icon-left (click)="goToCategoryPage(category, 'EDIT')">
             <ion-icon name='create'></ion-icon>
             Edit
           </button>
