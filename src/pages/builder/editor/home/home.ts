@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
 import { EditorCategoryPage } from '../category/category';
+
 /*
   Generated class for the Home page.
 
@@ -14,13 +15,13 @@ import { EditorCategoryPage } from '../category/category';
 })
 export class EditorHomePage {
   categories;
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public sayItService: SayItService
     ) {
-    
     this.sayItService.getCategories().then((categories)=>{
       this.categories = categories;
       console.log(categories);
@@ -31,8 +32,11 @@ export class EditorHomePage {
     console.log('Loaded EditorHomePage');
   }
 
-  
 
+  reset(){
+    this.sayItService.reset();
+    this.navCtrl.pop();
+  }
   goToCategoryPage(category, mode){
     this.navCtrl.push(EditorCategoryPage, {
       category: category,

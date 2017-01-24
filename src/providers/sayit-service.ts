@@ -13,6 +13,7 @@ export class SayItService {
   KEY_CATEGORIES = 'st.categories';
   categories;
   constructor(public storage: Storage) {
+    // storage.clear();
     console.log('Hello SayItService Provider');
   }
 
@@ -36,11 +37,17 @@ export class SayItService {
                   ...
                 ]
   */
+
+  reset(){
+    this.storage.clear();
+  }
+
   generateCategoryKey(){
     return Object.keys(this.categories).length + 1;
   }
 
   getCategoriesArray(){
+    console.log('Here', this.categories);
     var values = [];
     for(var categoryKey in this.categories){
       values.push(this.categories[categoryKey]);
@@ -62,7 +69,7 @@ export class SayItService {
   removeCategory(categoryKey){
     delete this.categories[categoryKey];
     this.storage.set(this.KEY_CATEGORIES, this.categories);
-    return this.getCategoriesArray
+    return this.getCategoriesArray();
   }
 
   updateCategory(category){

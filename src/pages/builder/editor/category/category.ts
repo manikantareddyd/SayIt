@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
 import { EditorActionPage } from '../action/action';
+import { EditorHomePage } from '../home/home';
 /*
   Generated class for the Category page.
 
@@ -22,6 +23,7 @@ export class EditorCategoryPage {
     public alertCtrl: AlertController,
     public sayItService: SayItService
     ) {
+    
     this.category = this.navParams.get('category');
     this.mode = this.navParams.get('mode');
     this.actions = this.sayItService.getActionsArray(this.category);
@@ -94,8 +96,18 @@ export class EditorCategoryPage {
     confirm.present();
   }
 
-  updateCategory(category){
+  updateCategory(category, mode){
     this.category = category;
-    this.sayItService.updateCategory(category);
+    if(mode == "EDIT"){
+      this.sayItService.updateCategory(category);
+    }
+    else if(mode == "ADD"){
+      this.sayItService.addCategory(category);
+    }
+  }
+
+  ionViewDidLeave(){
+    this.navCtrl.pop();
+    this.navCtrl.push(EditorHomePage);
   }
 }
