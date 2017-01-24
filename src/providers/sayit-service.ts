@@ -18,22 +18,23 @@ export class SayItService {
 
   /*
     Model model
-    [
-      {
-        title='xyz',
-        actions = [
-          {
-            title='abc'
-          },
-          {
-
-          }
-        ]
-      },
-      {
-
-      }
-    ]
+    categories = [
+                  {
+                    title='xyz',
+                    actions = [
+                      {
+                        title='abc'
+                      },
+                      {
+                       ...           
+                      }
+                    ]
+                  },
+                  {
+                    ...
+                  },
+                  ...
+                ]
   */
   generateCategoryKey(){
     return Object.keys(this.categories).length + 1;
