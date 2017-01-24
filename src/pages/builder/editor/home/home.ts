@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
+import { CategoryPage } from '../category/category';
 /*
   Generated class for the Home page.
 
@@ -16,11 +17,13 @@ export class EditorHomePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     public sayItService: SayItService
     ) {
     
     this.sayItService.getCategories().then((categories)=>{
       this.categories = categories;
+      console.log(categories);
     })
   }
 
@@ -28,14 +31,44 @@ export class EditorHomePage {
     console.log('Loaded EditorHomePage');
   }
 
-  showCategory(category){
-    if(!category){
-      category = {
-        title:'',
-        actions: []
-      }
-      
+  
+
+  goToCategoryPage(category, mode){
+    this.navCtrl.push(CategoryPage, {
+      category: category,
+      mode: mode
+    });
+  }
+
+  deleteCategory(category){
+    let confirm = this.alertCtrl.create({
+      title: 'Confirm that you wish to delete this category!',
+      message: 'This will also remove all actions in this category.<br> Warning! Cannot be undone.',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            console.log('Agree clicked');
+            this.categories = this.sayItService.removeCategory(category['key']);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  addCategory(){
+    var category = {
+      title: '',
+      actions: []
     }
+    return this.goToCategoryPage(category, "ADD");
   }
 
 }

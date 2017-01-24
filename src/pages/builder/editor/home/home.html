@@ -17,22 +17,24 @@
 
 
 <ion-content class="card-background-page">
-  <ion-card>
-    <img src="../../assets/img/bg.png"/>
-    <div class="card-title"><ion-icon name="create"></ion-icon></div>
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small  icon-left>
-          <ion-icon name='create'></ion-icon>
-          Edit
-        </button>
-      </ion-col>
-      <ion-col text-right>
-        <button ion-button clear small color="danger" icon-left>
-          <ion-icon name='trash'></ion-icon>
-          Delete
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
+  <ion-list *ngFor="let category of categories" inset>
+    <ion-card>
+      <img src="../../assets/img/bg.png"/>
+      <div class="card-title">{{category['title']}}</div>
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small  icon-left (click)="goToCategoryPage(category)">
+            <ion-icon name='create'></ion-icon>
+            Edit
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button clear small color="danger" icon-left (click)="deleteCategory(category)">
+            <ion-icon name='trash'></ion-icon>
+            Delete
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
 </ion-content>
