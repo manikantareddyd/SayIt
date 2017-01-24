@@ -28,9 +28,9 @@ export class LiveCategoryPage {
   }
   goToActionPage(action, category){
     this.navCtrl.push(LiveActionPage, {
-      action: action,
+      action: action
     });
   }
 
-  
+
 }

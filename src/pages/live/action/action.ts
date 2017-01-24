@@ -12,8 +12,10 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'action.html'
 })
 export class LiveActionPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  action;
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.action = this.navParams.get('action');
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActionPage');
