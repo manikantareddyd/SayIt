@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { EditorHomePage } from '../pages/editor/home/home';
+import { BuilderHomePage } from '../pages/builder/home/home';
 import { LiveHomePage } from '../pages/live/home/home';
 
 
@@ -22,7 +22,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: LiveHomePage },
-      { title: 'Editor', component: EditorHomePage }
+      { title: 'Builder', component: BuilderHomePage }
     ];
 
   }

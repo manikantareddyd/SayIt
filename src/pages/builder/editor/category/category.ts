@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
-  Generated class for the Action page.
+  Generated class for the Category page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-action',
-  templateUrl: 'action.html'
+  selector: 'page-editor-category',
+  templateUrl: 'category.html'
 })
-export class ActionPage {
+export class CategoryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ActionPage');
+    console.log('ionViewDidLoad CategoryPage');
   }
 
 }
