@@ -16,6 +16,25 @@ export class SayItService {
     console.log('Hello SayItService Provider');
   }
 
+  /*
+    Model model
+    [
+      {
+        title='xyz',
+        actions = [
+          {
+            title='abc'
+          },
+          {
+
+          }
+        ]
+      },
+      {
+
+      }
+    ]
+  */
   generateCategoryKey(){
     return Object.keys(this.categories).length + 1;
   }
@@ -64,6 +83,62 @@ export class SayItService {
         resolve(this.getCategoriesArray());
       })
     })
+    return promise;
   }
 
+/* Actions Start Here */
+  generateActionKey(category){
+    return category['actions'].length+1
+  }
+
+  getActionsArray(category){
+    var values = []
+    for(var actionKey in category['actions']){
+      values.push(category['actions'][actionKey])
+    }
+    return values;
+  }
+
+  addAction(action, category){
+    let actionKey = this.generateActionKey(category);
+    let categoryKey = category['key']
+    action['key'] = actionKey;
+    category['actions'][actionKey] = action;
+    this.categories[categoryKey] = category;
+    this.storage.set(this.KEY_CATEGORIES, this.categories);
+    return this.getActionsArray(category);
+  }
+
+  removeAction(actionKey, category){
+    delete category['actions'][actionKey];
+    let categoryKey = category['key'];
+    this.categories[categoryKey] = category;
+    this.storage.set(this.KEY_CATEGORIES, this.categories);
+    return this.getActionsArray(category);
+  }
+
+  updateAction(action, category){
+    let actionKey = action['key'];
+    let categoryKey = category['key'];
+    category['actions'][actionKey] = action;
+    this.categories[categoryKey] = category;
+    this.storage.set(this.KEY_CATEGORIES, this.categories);
+    return this.getActionsArray(category);
+  }
+
+  getActions(category){
+    let categoryKey = category['key'];
+    var promise = new Promise((resolve, reject) => {
+      this.storage.get(this.KEY_CATEGORIES).then((actions)=>{
+        if(!actions){
+          category['actions'] = [];
+        }
+        else{
+          category['actions'] = actions;
+        }
+        this.categories[categoryKey] = category;
+      })
+    })
+    return promise;
+  }
 }
