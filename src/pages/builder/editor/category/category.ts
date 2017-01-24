@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Events } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
 import { EditorActionPage } from '../action/action';
 import { EditorHomePage } from '../home/home';
@@ -21,6 +21,7 @@ export class EditorCategoryPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public alertCtrl: AlertController,
+    public events: Events,
     public sayItService: SayItService
     ) {
     
@@ -104,10 +105,9 @@ export class EditorCategoryPage {
     else if(mode == "ADD"){
       this.sayItService.addCategory(category);
     }
+    this.events.publish('reloadEditorHomeData');
+    this.navCtrl.pop();
   }
 
-  ionViewDidLeave(){
-    this.navCtrl.pop();
-    this.navCtrl.push(EditorHomePage);
-  }
+  
 }

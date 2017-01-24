@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Events } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
 import { EditorCategoryPage } from '../category/category';
 
@@ -20,11 +20,14 @@ export class EditorHomePage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public alertCtrl: AlertController,
+    public events: Events,
     public sayItService: SayItService
     ) {
+    this.events.subscribe('reloadEditorHomeData',()=>{
+      this.categories = this.sayItService.getCategoriesArray();
+    });
     this.sayItService.getCategories().then((categories)=>{
       this.categories = categories;
-      console.log(categories);
     })
   }
 

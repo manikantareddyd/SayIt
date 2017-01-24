@@ -43,11 +43,14 @@ export class SayItService {
   }
 
   generateCategoryKey(){
-    return Object.keys(this.categories).length + 1;
+    var last = this.categories.length - 1;
+    console.log('last', last, this.categories)
+    var newKey = 0;
+    if(last > -1) newKey = this.categories[last]['key'] + 1;
+    return newKey;
   }
 
   getCategoriesArray(){
-    console.log('Here', this.categories);
     var values = [];
     for(var categoryKey in this.categories){
       values.push(this.categories[categoryKey]);
