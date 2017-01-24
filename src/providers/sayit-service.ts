@@ -38,13 +38,9 @@ export class SayItService {
                 ]
   */
 
-  reset(){
-    this.storage.clear();
-  }
 
   generateCategoryKey(){
     var last = this.categories.length - 1;
-    console.log('last', last, this.categories)
     var newKey = 0;
     if(last > -1) newKey = this.categories[last]['key'] + 1;
     return newKey;
@@ -69,13 +65,16 @@ export class SayItService {
     return this.getCategoriesArray();
   }
 
-  removeCategory(categoryKey){
-    delete this.categories[categoryKey];
+  removeCategory(category){
+    delete this.categories[category['key']];
     this.storage.set(this.KEY_CATEGORIES, this.categories);
     return this.getCategoriesArray();
   }
 
   updateCategory(category){
+    if(category['title'] == ''){
+      return this.getCategoriesArray();
+    }
     var categoryKey = category['key'];
     this.categories[categoryKey] = category;
     this.storage.set(this.KEY_CATEGORIES, this.categories);
@@ -99,7 +98,10 @@ export class SayItService {
 
 /* Actions Start Here */
   generateActionKey(category){
-    return category['actions'].length+1
+    var last = category['actions'].length - 1;
+    var newKey = 0;
+    if(last > -1) newKey = category['actions'][last]['key'] + 1;
+    return newKey;
   }
 
   getActionsArray(category){
@@ -111,6 +113,9 @@ export class SayItService {
   }
 
   addAction(action, category){
+    if(action['title'] == '' ){
+      return this.getActionsArray(category);
+    }
     let actionKey = this.generateActionKey(category);
     let categoryKey = category['key']
     action['key'] = actionKey;
@@ -120,8 +125,8 @@ export class SayItService {
     return this.getActionsArray(category);
   }
 
-  removeAction(actionKey, category){
-    delete category['actions'][actionKey];
+  removeAction(action, category){
+    delete category['actions'][action['key']];
     let categoryKey = category['key'];
     this.categories[categoryKey] = category;
     this.storage.set(this.KEY_CATEGORIES, this.categories);
@@ -129,6 +134,9 @@ export class SayItService {
   }
 
   updateAction(action, category){
+    if(action['title'] == '' ){
+      return this.getActionsArray(category);
+    }
     let actionKey = action['key'];
     let categoryKey = category['key'];
     category['actions'][actionKey] = action;

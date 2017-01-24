@@ -7,12 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>category</ion-title>
+    <ion-title>{{category.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content class="card-background-page" drag-content="false">
+  <ion-card *ngIf="!actions">
+    <ion-card-header>No Actions Available</ion-card-header>
+  </ion-card>
+  <div *ngIf="actions"> 
+    <ion-card *ngIf="actions.length === 0">
+      <ion-card-header>No Actions Available</ion-card-header>
+    </ion-card>
+  </div>
+  <ion-list *ngFor="let action of actions" inset>
+    <ion-card (click)="goToActionPage(action, category)">
+      <img src="../../assets/img/bg.png"/>
+      <div class="card-title">{{action['title']}}</div>
+    </ion-card>
+  </ion-list>
+  
 </ion-content>

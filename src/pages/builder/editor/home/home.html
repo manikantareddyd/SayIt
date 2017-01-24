@@ -8,11 +8,8 @@
   <ion-navbar>
     <ion-title>Editor</ion-title>
     <ion-buttons end>
-      <button ion-button (click)="reset()">
-        reset
-      </button>
       <button ion-button (click)="addCategory()">
-        <ion-icon name="add"></ion-icon> category
+        Add Category
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -20,6 +17,14 @@
 
 
 <ion-content class="card-background-page">
+  <ion-card *ngIf="!categories">
+    <ion-card-header>No Categories Available</ion-card-header>
+  </ion-card>
+  <div *ngIf="categories"> 
+    <ion-card *ngIf="categories.length === 0">
+      <ion-card-header>No Categories Available</ion-card-header>
+    </ion-card>
+  </div>
   <ion-list *ngFor="let category of categories" inset>
     <ion-card>
       <img src="../../assets/img/bg.png"/>

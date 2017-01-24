@@ -9,6 +9,20 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding drag-content="false" >
-  
+<ion-content class="card-background-page" drag-content="false">
+  <ion-card *ngIf="!categories">
+    <ion-card-header>No Categories Available</ion-card-header>
+  </ion-card>
+  <div *ngIf="categories"> 
+    <ion-card *ngIf="categories.length === 0">
+      <ion-card-header>No Categories Available</ion-card-header>
+    </ion-card>
+  </div>
+  <ion-list *ngFor="let category of categories" inset>
+    <ion-card (click)="goToCategoryPage(category)">
+      <img src="../../assets/img/bg.png"/>
+      <div class="card-title">{{category['title']}}</div>
+    </ion-card>
+  </ion-list>
 </ion-content>
+

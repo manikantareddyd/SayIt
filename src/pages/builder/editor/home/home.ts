@@ -36,10 +36,6 @@ export class EditorHomePage {
   }
 
 
-  reset(){
-    this.sayItService.reset();
-    this.navCtrl.pop();
-  }
   goToCategoryPage(category, mode){
     this.navCtrl.push(EditorCategoryPage, {
       category: category,
@@ -62,7 +58,7 @@ export class EditorHomePage {
           text: 'Agree',
           handler: () => {
             console.log('Agree clicked');
-            this.categories = this.sayItService.removeCategory(category['key']);
+            this.categories = this.sayItService.removeCategory(category);
           }
         }
       ]

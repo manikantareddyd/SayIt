@@ -13,15 +13,21 @@ import { EditorActionPage } from '../pages/builder/editor/action/action';
 
 
 import { LiveHomePage } from '../pages/live/home/home';
+import { LiveCategoryPage } from '../pages/live/category/category';
+import { LiveActionPage } from '../pages/live/action/action';
 
 @NgModule({
   declarations: [
     MyApp,
     BuilderHomePage,
+
     EditorHomePage,
     EditorCategoryPage,
     EditorActionPage,
+
     LiveHomePage,
+    LiveCategoryPage,
+    LiveActionPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -30,10 +36,14 @@ import { LiveHomePage } from '../pages/live/home/home';
   entryComponents: [
     MyApp,
     BuilderHomePage,
+
     EditorHomePage,
     EditorCategoryPage,
     EditorActionPage,
-    LiveHomePage
+
+    LiveHomePage,
+    LiveCategoryPage,
+    LiveActionPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, SayItService, Storage]
 })

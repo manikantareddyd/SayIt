@@ -8,10 +8,10 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-action',
+  selector: 'page-live-action',
   templateUrl: 'action.html'
 })
-export class ActionPage {
+export class LiveActionPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

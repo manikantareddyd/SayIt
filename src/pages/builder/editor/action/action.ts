@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
+import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
+import { SayItService } from '../../../../providers/sayit-service';
 /*
   Generated class for the Action page.
 
@@ -17,7 +17,10 @@ export class EditorActionPage {
   mode;
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams
+    public navParams: NavParams,
+    public events: Events,
+    public alertCtrl: AlertController,
+    public sayItService: SayItService
     ) {
     this.action = this.navParams.get('action');
     this.category = this.navParams.get('category');
@@ -28,4 +31,40 @@ export class EditorActionPage {
     console.log('ionViewDidLoad ActionPage');
   }
 
+  deleteAction(action, category){
+    let confirm = this.alertCtrl.create({
+      title: 'Confirm that you wish to delete this action!',
+      message: 'Warning! Cannot be undone.',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            console.log('Agree clicked');
+            this.sayItService.removeAction(action, category);
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  updateAction(action, category, mode){
+    this.action = action;
+    if(mode == "EDIT"){
+      this.sayItService.updateAction(action, category);
+    }
+    else if(mode == "ADD"){
+      this.sayItService.addAction(action, category);
+    }
+    console.log(category);
+    this.events.publish('reloadEditorCategoryData');
+    this.navCtrl.pop();
+  }
 }

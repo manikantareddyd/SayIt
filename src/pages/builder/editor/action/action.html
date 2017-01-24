@@ -7,22 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Edit Action</ion-title>
+    <ion-title>{{mode}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="card-background-page">
   <ion-card>
     <ion-list no-lines>
     <ion-item>
       <ion-label stacked>Title</ion-label>
-      <ion-input type="text" [(ngModel)]="action.title"></ion-input>
+      <ion-input type="text" [(ngModel)]="action.title" required></ion-input>
     </ion-item>
     <ion-row no-padding>
         <ion-col>
-          <button ion-button clear small  icon-left (click)="updateAction(action, category)">
+          <button ion-button clear small  icon-left (click)="updateAction(action, category, mode)">
             {{mode}}
           </button>
         </ion-col>

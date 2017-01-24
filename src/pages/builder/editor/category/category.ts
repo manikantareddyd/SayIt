@@ -28,6 +28,9 @@ export class EditorCategoryPage {
     this.category = this.navParams.get('category');
     this.mode = this.navParams.get('mode');
     this.actions = this.sayItService.getActionsArray(this.category);
+    this.events.subscribe('reloadEditorCategoryData',()=>{
+      this.actions = this.sayItService.getActionsArray(this.category);
+    });
   }
 
   ionViewDidLoad() {
@@ -88,7 +91,7 @@ export class EditorCategoryPage {
           text: 'Agree',
           handler: () => {
             console.log('Agree clicked');
-            this.sayItService.removeCategory(category['key']);
+            this.sayItService.removeCategory(category);
             this.navCtrl.pop();
           }
         }
@@ -99,11 +102,13 @@ export class EditorCategoryPage {
 
   updateCategory(category, mode){
     this.category = category;
-    if(mode == "EDIT"){
-      this.sayItService.updateCategory(category);
-    }
-    else if(mode == "ADD"){
-      this.sayItService.addCategory(category);
+    if(category['title'] != ""){
+      if(mode == "EDIT"){
+        this.sayItService.updateCategory(category);
+      }
+      else if(mode == "ADD"){
+        this.sayItService.addCategory(category);
+      }
     }
     this.events.publish('reloadEditorHomeData');
     this.navCtrl.pop();
