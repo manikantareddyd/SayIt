@@ -11,11 +11,16 @@
   </ion-navbar>
 
 </ion-header>
-
-<ion-content class="card-background-page">
- 
+<ion-content >
   <ion-card>
-     <img src="../../assets/img/bg.png"/>
-    <div class="card-title">{{action['title']}}</div>
+  <ion-card-header>
+    <h1>{{action['title']}}</h1>
+  </ion-card-header>
   </ion-card>
+  <div class="card-background-page">
+    <ion-card>
+      <img src="assets/img/bg.png"/>
+      <div class="card-subtitle">{{action['text']}}</div>
+    </ion-card>
+  </div>
 </ion-content>

@@ -71,7 +71,8 @@ export class EditorCategoryPage {
 
   addAction(category){
     var action = {
-      title: ''
+      title: '',
+      text:''
     }
     return this.goToActionPage(action, category, "ADD");
   }

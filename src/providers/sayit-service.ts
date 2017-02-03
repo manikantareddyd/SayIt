@@ -24,7 +24,8 @@ export class SayItService {
                     title='xyz',
                     actions = [
                       {
-                        title='abc'
+                        title='abc',
+                        text='This is the text action'
                       },
                       {
                        ...           
