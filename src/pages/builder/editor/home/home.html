@@ -27,8 +27,8 @@
   </div>
   <ion-list *ngFor="let category of categories" inset>
     <ion-card>
-      <img src="assets/img/bg.png"/>
-      <div class="card-title">{{category['title']}}</div>
+      <img src="{{category.image}}"/>
+      <div (click)="goToCategoryPage(category, 'EDIT')" class="card-title">{{category['title']}}</div>
       <ion-row no-padding>
         <ion-col>
           <button ion-button clear small  icon-left (click)="goToCategoryPage(category, 'EDIT')">

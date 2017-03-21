@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "SayIt",
+  "author": "Manikanta Reddy D",
+  "homepage": "https://manikantareddyd.github.io",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",

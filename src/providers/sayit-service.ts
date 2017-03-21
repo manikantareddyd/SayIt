@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
+import { TextToSpeech } from 'ionic-native';
+
 
 /*
   Generated class for the SayitService provider.
@@ -22,13 +24,15 @@ export class SayItService {
     categories = [
                   {
                     title='xyz',
+                    image=,
                     actions = [
                       {
                         title='abc',
-                        text='This is the text action'
+                        text='This is the text action',
+                        image=,
                       },
                       {
-                       ...           
+                        ...           
                       }
                     ]
                   },
@@ -61,6 +65,7 @@ export class SayItService {
     }
     let categoryKey = this.generateCategoryKey();
     category['key'] = categoryKey;
+    category['image'] = "assets/img/bg2.png";
     this.categories[categoryKey] = category;
     this.storage.set(this.KEY_CATEGORIES, this.categories);
     return this.getCategoriesArray();
@@ -80,6 +85,10 @@ export class SayItService {
     this.categories[categoryKey] = category;
     this.storage.set(this.KEY_CATEGORIES, this.categories);
     return this.getCategoriesArray();
+  }
+
+  updateCategoryPicture(category){
+    
   }
 
   getCategories(){
@@ -160,5 +169,13 @@ export class SayItService {
       })
     })
     return promise;
+  }
+
+  speakAction(action){
+    TextToSpeech.speak(action['text']).then(
+      () => console.log("Success")
+    ).catch(
+      (reason: any) => console.log(reason)
+    );
   }
 }

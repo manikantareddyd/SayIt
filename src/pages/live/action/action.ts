@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { SayItService } from '../../../providers/sayit-service';
 /*
   Generated class for the Action page.
 
@@ -13,7 +13,11 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LiveActionPage {
   action;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public sayItService: SayItService
+  ) {
     this.action = this.navParams.get('action');
   }
 
@@ -21,4 +25,11 @@ export class LiveActionPage {
     console.log('ionViewDidLoad ActionPage');
   }
 
+  speakAction(action){
+    this.sayItService.speakAction(action);
+  }
+
+  goBack(){
+    this.navCtrl.pop();
+  }
 }

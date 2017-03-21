@@ -32,5 +32,9 @@ export class LiveCategoryPage {
     });
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
 
 }

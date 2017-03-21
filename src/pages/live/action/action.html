@@ -5,22 +5,28 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Action</ion-title>
+  <ion-toolbar class="toolbar">
+    <ion-card (click)="goBack()">
+      <ion-card-header>
+        <h1><b>{{action.title}}</b></h1>
+        <ion-icon name='arrow-round-back'> back</ion-icon>
+      </ion-card-header>  
+    </ion-card>
+  </ion-toolbar>
+  <ion-navbar hideBackButton *navbar>
+    <ion-title></ion-title>
   </ion-navbar>
 
 </ion-header>
-<ion-content >
-  <ion-card>
-  <ion-card-header>
-    <h1>{{action['title']}}</h1>
-  </ion-card-header>
+<ion-content class="card-background-page">
+  
+  <div>
+  <ion-card (click)="speakAction(action)">
+    <img src="assets/img/bg.png"/>
+    <div class="card-title">
+          <ion-icon name='volume-up' ></ion-icon>
+    </div>
+    <div class="card-subtitle"><br>{{action['text']}}</div>
   </ion-card>
-  <div class="card-background-page">
-    <ion-card>
-      <img src="assets/img/bg.png"/>
-      <div class="card-subtitle">{{action['text']}}</div>
-    </ion-card>
   </div>
 </ion-content>

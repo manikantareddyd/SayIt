@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
-import { TextToSpeech } from 'ionic-native';
+
 
 /*
   Generated class for the Action page.
@@ -34,11 +34,7 @@ export class EditorActionPage {
   }
 
   speakAction(action){
-    TextToSpeech.speak(action['text']).then(
-      () => console.log("Success")
-    ).catch(
-      (reason: any) => console.log(reason)
-    );
+    this.sayItService.speakAction(action);
   }
 
   deleteAction(action, category){

@@ -21,7 +21,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: LiveHomePage },
+      { title: 'Mode 1', component: LiveHomePage },
       { title: 'Builder', component: BuilderHomePage }
     ];
 
