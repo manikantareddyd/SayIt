@@ -3,7 +3,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { SayItService } from '../providers/sayit-service';
-import { Storage } from '@ionic/storage';
+
+import { IonicStorageModule } from '@ionic/storage';
 
 import { BuilderHomePage } from '../pages/builder/home/home';
 import { EditorHomePage } from '../pages/builder/editor/home/home';
@@ -30,7 +31,8 @@ import { LiveActionPage } from '../pages/live/action/action';
     LiveActionPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,6 +47,12 @@ import { LiveActionPage } from '../pages/live/action/action';
     LiveCategoryPage,
     LiveActionPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, SayItService, Storage]
+  providers: [
+    {
+      provide: ErrorHandler, 
+      useClass: IonicErrorHandler
+    }, 
+    SayItService
+  ]
 })
 export class AppModule {}
