@@ -3,13 +3,6 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import { TextToSpeech } from 'ionic-native';
 
-
-/*
-  Generated class for the SayitService provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class SayItService {
   KEY_CATEGORIES = 'st.categories';
@@ -178,6 +171,6 @@ export class SayItService {
   }
 
   shareCategory(category){
-    
+
   }
 }
