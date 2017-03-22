@@ -176,4 +176,8 @@ export class SayItService {
       (reason: any) => console.log("Couldn't speak action text", reason)
     );
   }
+
+  shareCategory(category){
+    
+  }
 }

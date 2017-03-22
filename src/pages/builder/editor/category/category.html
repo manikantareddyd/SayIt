@@ -73,7 +73,7 @@
     </ion-card-header>
     <ion-list *ngFor="let action of actions" inset>
       <ion-card>
-        <img src="{{action.image}}"/>
+        <img (click)="goToActionPage(action, category, 'EDIT')" src="{{action.image}}"/>
         <ion-row no-padding>
           <ion-col>
             <div class="title">{{action.title}}</div>
