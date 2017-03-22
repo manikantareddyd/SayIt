@@ -16,17 +16,20 @@
   <ion-navbar hideBackButton *navbar>
     <ion-title></ion-title>
   </ion-navbar>
-
 </ion-header>
+
 <ion-content class="card-background-page">
-  
-  <div>
   <ion-card (click)="speakAction(action)">
-    <img src="assets/img/bg.png"/>
-    <div class="card-title">
-          <ion-icon name='volume-up' ></ion-icon>
-    </div>
-    <div class="card-subtitle"><br>{{action['text']}}</div>
+    <img src="{{action.image}}"/>
+    <ion-row no-padding>
+      <ion-col>
+        <ion-icon name='volume-up' ></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col>
+        <div class="subtitle">{{action['text']}}</div>
+      </ion-col>
+    </ion-row>
   </ion-card>
-  </div>
 </ion-content>

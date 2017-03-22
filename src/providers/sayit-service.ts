@@ -16,31 +16,32 @@ export class SayItService {
   categories;
   constructor(public storage: Storage) {
     // storage.clear();
-    console.log('Hello SayItService Provider');
+    console.log('SayItService initialized');
   }
 
   /*
     Model model
-    categories = [
-                  {
-                    title='xyz',
-                    image=,
-                    actions = [
-                      {
-                        title='abc',
-                        text='This is the text action',
-                        image=,
-                      },
-                      {
-                        ...           
-                      }
-                    ]
-                  },
-                  {
-                    ...
-                  },
-                  ...
-                ]
+    categories = 
+    [
+      {
+        title='xyz',
+        image='path to image',
+        actions = [
+          {
+            title='abc',
+            text='This is the text action',
+            image='path to image',
+          },
+          {
+            ...           
+          }
+        ]
+      },
+      {
+        ...
+      },
+      ...
+    ]
   */
 
 
@@ -87,10 +88,6 @@ export class SayItService {
     return this.getCategoriesArray();
   }
 
-  updateCategoryPicture(category){
-    
-  }
-
   getCategories(){
     var promise = new Promise((resolve, reject) => {
       this.storage.get(this.KEY_CATEGORIES).then((categories) => {
@@ -129,6 +126,7 @@ export class SayItService {
     let actionKey = this.generateActionKey(category);
     let categoryKey = category['key']
     action['key'] = actionKey;
+    action['image'] = 'assets/img/bg2.png';
     category['actions'][actionKey] = action;
     this.categories[categoryKey] = category;
     this.storage.set(this.KEY_CATEGORIES, this.categories);
@@ -173,9 +171,9 @@ export class SayItService {
 
   speakAction(action){
     TextToSpeech.speak(action['text']).then(
-      () => console.log("Success")
+      () => console.log("Action Text succesfully spoken.")
     ).catch(
-      (reason: any) => console.log(reason)
+      (reason: any) => console.log("Couldn't speak action text", reason)
     );
   }
 }

@@ -38,7 +38,7 @@ export class EditorCategoryPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CategoryPage');
+    console.log('Loaded CategoryPage');
   }
 
 

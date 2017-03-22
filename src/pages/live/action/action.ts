@@ -22,7 +22,7 @@ export class LiveActionPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ActionPage');
+    console.log('Loaded ActionPage.');
   }
 
   speakAction(action){

@@ -20,8 +20,12 @@
   </div>
   <ion-list *ngFor="let category of categories" inset>
     <ion-card (click)="goToCategoryPage(category)">
-      <img src="assets/img/bg.png"/>
-      <div class="card-title">{{category['title']}}</div>
+      <img src="{{category.image}}"/>
+      <ion-row no-padding>
+        <ion-col>
+          <div class="title">{{category.title}}</div>
+        </ion-col>
+      </ion-row>
     </ion-card>
   </ion-list>
 </ion-content>
