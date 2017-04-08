@@ -12,7 +12,7 @@ import { Live2HomePage } from '../pages/live2/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Live2HomePage;
+  rootPage: any = LiveHomePage;
 
   pages: Array<{title: string, component: any}>;
 
