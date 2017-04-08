@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-card (click)="goBack()">
+      <ion-card-header>
+        <h1><b>{{category.title}}</b></h1>
+        <ion-icon name='arrow-round-back'> back</ion-icon>  
+      </ion-card-header> 
+    </ion-card>
+  </ion-toolbar>
+  <ion-navbar hideBackButton *navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-card *ngIf="!actions">
+    <ion-card-header>
+      No Actions Available
+    </ion-card-header>
+  </ion-card>
+  <div *ngIf="actions"> 
+    <ion-card *ngIf="actions.length === 0">
+      <ion-card-header>
+        No Actions Available
+      </ion-card-header>
+    </ion-card>
+  </div>
+  <ion-list *ngFor="let action of actions" inset>
+    <ion-card (click)="goToActionPage(action, category)">
+      <img src="{{action.image}}"/>
+      <ion-row no-padding>
+        <ion-col>
+          <div class="title">{{action.title}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+</ion-content>

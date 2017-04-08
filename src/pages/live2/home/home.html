@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      SayIt
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page" >
+  <ion-card *ngIf="!categories">
+    <ion-card-header>No Categories Available</ion-card-header>
+  </ion-card>
+  <div *ngIf="categories"> 
+    <ion-card *ngIf="categories.length === 0">
+      <ion-card-header>No Categories Available</ion-card-header>
+    </ion-card>
+  </div>
+  <ion-list *ngFor="let category of categories" inset>
+    <ion-card (click)="goToCategoryPage(category)">
+      <img src="{{category.image}}"/>
+      <ion-row no-padding>
+        <ion-col>
+          <div class="title">{{category.title}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+</ion-content>
+

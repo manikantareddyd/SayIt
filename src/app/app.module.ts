@@ -17,6 +17,10 @@ import { LiveHomePage } from '../pages/live/home/home';
 import { LiveCategoryPage } from '../pages/live/category/category';
 import { LiveActionPage } from '../pages/live/action/action';
 
+import { Live2HomePage } from '../pages/live2/home/home';
+import { Live2CategoryPage } from '../pages/live2/category/category';
+import { Live2ActionPage } from '../pages/live2/action/action';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -28,7 +32,11 @@ import { LiveActionPage } from '../pages/live/action/action';
 
     LiveHomePage,
     LiveCategoryPage,
-    LiveActionPage
+    LiveActionPage,
+
+    Live2HomePage,
+    Live2CategoryPage,
+    Live2ActionPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -42,10 +50,14 @@ import { LiveActionPage } from '../pages/live/action/action';
     EditorHomePage,
     EditorCategoryPage,
     EditorActionPage,
-
+    
     LiveHomePage,
     LiveCategoryPage,
-    LiveActionPage
+    LiveActionPage,
+
+    Live2HomePage,
+    Live2CategoryPage,
+    Live2ActionPage
   ],
   providers: [
     {

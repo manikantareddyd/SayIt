@@ -4,7 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { BuilderHomePage } from '../pages/builder/home/home';
 import { LiveHomePage } from '../pages/live/home/home';
-
+import { Live2HomePage } from '../pages/live2/home/home';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,6 +22,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Mode 1', component: LiveHomePage },
+      { title: 'Mode 2', component: Live2HomePage },
       { title: 'Builder', component: BuilderHomePage }
     ];
 
