@@ -146,22 +146,6 @@ export class SayItService {
     return this.getActionsArray(category);
   }
 
-  getActions(category){
-    let categoryKey = category['key'];
-    var promise = new Promise((resolve, reject) => {
-      this.storage.get(this.KEY_CATEGORIES).then((actions)=>{
-        if(!actions){
-          category['actions'] = [];
-        }
-        else{
-          category['actions'] = actions;
-        }
-        this.categories[categoryKey] = category;
-      })
-    })
-    return promise;
-  }
-
   speakAction(action){
     TextToSpeech.speak(action['text']).then(
       () => console.log("Action Text succesfully spoken.")

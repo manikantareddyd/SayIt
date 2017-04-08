@@ -14,6 +14,7 @@ import { Live2ActionPage } from '../action/action';
 })
 export class Live2CategoryPage {
   category;
+  action;
   actions;
   constructor(
     public navCtrl: NavController, 
@@ -22,6 +23,7 @@ export class Live2CategoryPage {
   ) {
     this.category = this.navParams.get('category');
     this.actions = this.sayItService.getActionsArray(this.category);
+    this.action = this.actions[0];
   }
   ionViewDidLoad() {
     console.log('Loaded CategoryPage.');
@@ -34,6 +36,18 @@ export class Live2CategoryPage {
 
   goBack(){
     this.navCtrl.pop();
+  }
+  
+  goNext(action){
+    var ind = this.actions.indexOf(action);
+    if(ind != this.actions.length - 1)
+      this.action = this.actions[ind+1];
+  }
+
+  goPrevious(action){
+    var ind = this.actions.indexOf(action);
+    if(ind != 0)
+      this.action = this.actions[ind-1];
   }
 
 
