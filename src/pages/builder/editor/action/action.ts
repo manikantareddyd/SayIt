@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, Events, ActionSheetController, ToastController, Platform, LoadingController } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
 
-import { Camera, File, Transfer, FilePath } from 'ionic-native';
+import { Camera, File, FilePath } from 'ionic-native';
 
 declare var cordova: any;
 

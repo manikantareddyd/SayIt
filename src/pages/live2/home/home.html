@@ -11,23 +11,29 @@
 
 <ion-content class="card-background-page" >
   <ion-card *ngIf="!categories">
-    <ion-card-header>No Categories Available</ion-card-header>
+    <ion-card-header>
+      No Categories Available
+    </ion-card-header>
   </ion-card>
   <div *ngIf="categories"> 
     <ion-card *ngIf="categories.length === 0">
-      <ion-card-header>No Categories Available</ion-card-header>
+      <ion-card-header>
+        No Categories Available
+      </ion-card-header>
     </ion-card>
     <ion-card *ngIf="categories.length > 0" (click)="goToCategoryPage(category)">
       <img src="{{category.image}}"/>
       <ion-row no-padding>
         <ion-col>
-          <div class="title">{{category.title}}</div>
+          <div class="title">
+            {{1 + categories.indexOf(category)}}. {{category.title}}
+          </div>
         </ion-col>
       </ion-row>
     </ion-card>
     <ion-row>
       <ion-col id="joystick" style="width:75%;">
-        <svg width="100%" height="100%" viewBox="0 0 100 100">
+        <svg width="100%" height="75%" viewBox="0 0 100 100">
           <path d="M50,14 54,22 46,22Z" fill="rgba(0,0,0,0.8)" />
           <path d="M50,86 54,78 46,78Z" fill="rgba(0,0,0,0.8)" />
           <path d="M14,50 22,54 22,46Z" fill="rgba(0,0,0,0.8)" />

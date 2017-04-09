@@ -3,7 +3,7 @@ import { NavController, NavParams, AlertController, Events, ActionSheetControlle
 import { SayItService } from '../../../../providers/sayit-service';
 import { EditorActionPage } from '../action/action';
 
-import { Camera, File, Transfer, FilePath } from 'ionic-native';
+import { Camera, File, FilePath } from 'ionic-native';
 
 declare var cordova: any;
 

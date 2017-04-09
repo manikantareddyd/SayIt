@@ -6,6 +6,7 @@ import { BuilderHomePage } from '../pages/builder/home/home';
 import { LiveHomePage } from '../pages/live/home/home';
 import { Live2HomePage } from '../pages/live2/home/home';
 
+import { SettingsPage } from "../pages/settings/settings";
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,7 +24,8 @@ export class MyApp {
     this.pages = [
       { title: 'Mode 1', component: LiveHomePage },
       { title: 'Mode 2', component: Live2HomePage },
-      { title: 'Builder', component: BuilderHomePage }
+      { title: 'Builder', component: BuilderHomePage },
+      { title: 'Settings', component: SettingsPage}
     ];
 
   }
