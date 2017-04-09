@@ -1,8 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { File } from '@ionic-native/file';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SayItService } from '../providers/sayit-service';
+import { ShareService } from '../providers/share-service';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -11,9 +14,9 @@ import { EditorHomePage } from '../pages/builder/editor/home/home';
 import { EditorCategoryPage } from '../pages/builder/editor/category/category';
 import { EditorActionPage } from '../pages/builder/editor/action/action';
 
-import { ShareHomePage } from '../pages/builder/share/home/home';
-import { ShareFilePage } from '../pages/builder/share/file/file';
-import { ShareSendPage } from '../pages/builder/share/send/send';
+import { ShareHomePage } from '../pages/share/home/home';
+import { ShareFilePage } from '../pages/share/file/file';
+import { ShareSendPage } from '../pages/share/send/send';
 
 
 import { SettingsPage } from '../pages/settings/settings';
@@ -79,7 +82,10 @@ import { Live2ActionPage } from '../pages/live2/action/action';
       provide: ErrorHandler, 
       useClass: IonicErrorHandler
     }, 
-    SayItService
+    SayItService,
+    ShareService,
+    File,
+    SocialSharing
   ]
 })
 export class AppModule {}

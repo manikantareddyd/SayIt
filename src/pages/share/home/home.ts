@@ -9,7 +9,7 @@ import { ShareSendPage } from "../send/send";
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-share-home',
+  selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class ShareHomePage {

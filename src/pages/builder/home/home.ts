@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { NavController, AlertController } from 'ionic-angular';
 import { EditorHomePage } from '../editor/home/home';
-import { ShareHomePage } from '../share/home/home';
 import { Storage } from "@ionic/storage";
 @Component({
   selector: 'page-builder-home',
@@ -22,9 +21,6 @@ export class BuilderHomePage {
     this.navCtrl.push(EditorHomePage);
   }
 
-  goToSharePage(){
-    this.navCtrl.push(ShareHomePage);
-  }
   reset(){
     let confirm = this.alertCtrl.create({
       title: 'Confirm that you wish to reset all data!',

@@ -17,5 +17,10 @@
 
 
 <ion-content padding>
-
+<ion-list>
+  <ion-item>
+    <ion-label>Toggle Default Mode</ion-label>
+    <ion-toggle [(ngModel)]="mode" (change)="updateMode()"></ion-toggle>
+  </ion-item>
+</ion-list>
 </ion-content>

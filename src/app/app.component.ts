@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { BuilderHomePage } from '../pages/builder/home/home';
+import { ShareHomePage } from '../pages/share/home/home';
 import { LiveHomePage } from '../pages/live/home/home';
 import { Live2HomePage } from '../pages/live2/home/home';
 
@@ -25,6 +26,7 @@ export class MyApp {
       { title: 'Mode 1', component: LiveHomePage },
       { title: 'Mode 2', component: Live2HomePage },
       { title: 'Builder', component: BuilderHomePage },
+      { title: 'Share', component: ShareHomePage}, 
       { title: 'Settings', component: SettingsPage}
     ];
 

@@ -1,0 +1,65 @@
+<!--
+  Generated template for the Send page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar >
+    <ion-title>Send Actions</ion-title>
+    <ion-buttons end> 
+        <button ion-button (click)="sendClicked(categories)" ><ion-icon name="send"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding >
+  <ion-card>
+    <ion-card-content>
+      Select the actions you want to share. Corresponding categories will be automatically packaged.
+      <br>
+      Click send (<ion-icon name="send"></ion-icon>) when done.
+    </ion-card-content>
+  </ion-card>
+  <hr>
+  <ion-card *ngIf="!categories">
+    <ion-card-header>No Categories Available</ion-card-header>
+  </ion-card>
+  <div *ngIf="categories"> 
+    <ion-card *ngIf="categories.length === 0">
+      <ion-card-header>No Categories Available</ion-card-header>
+    </ion-card>
+  </div>
+  <ion-list class="card-background-page" *ngFor="let category of categories" inset>
+    <ion-card>
+      <div class="title">{{category.title}}</div>
+      <ion-card *ngIf="!category.actions">
+        <ion-card-header>
+          No Actions Available
+        </ion-card-header>
+      </ion-card>
+      <div *ngIf="category.actions"> 
+        <ion-card *ngIf="category.actions.length === 0">
+          <ion-card-header>
+            No Actions Available
+          </ion-card-header>
+        </ion-card>
+      </div>
+      <ion-list *ngFor="let action of category.actions" inset>
+        <ion-item>
+          <ion-label>
+            <div class="subtitle">{{action.title}}</div>
+            <div class="subtitle2">{{action.text}}</div>
+          </ion-label>
+          <ion-checkbox [(ngModel)]="action.check"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    
+  </ion-list>
+  <div style="text-align: center;">
+    <button (click)="sendClicked(categories)" ion-button round>Send</button>
+  </div>
+</ion-content>
