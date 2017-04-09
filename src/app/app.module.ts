@@ -11,7 +11,12 @@ import { EditorHomePage } from '../pages/builder/editor/home/home';
 import { EditorCategoryPage } from '../pages/builder/editor/category/category';
 import { EditorActionPage } from '../pages/builder/editor/action/action';
 
+import { ShareHomePage } from '../pages/builder/share/home/home';
+import { ShareFilePage } from '../pages/builder/share/file/file';
+import { ShareSendPage } from '../pages/builder/share/send/send';
 
+
+import { SettingsPage } from '../pages/settings/settings';
 
 import { LiveHomePage } from '../pages/live/home/home';
 import { LiveCategoryPage } from '../pages/live/category/category';
@@ -25,6 +30,11 @@ import { Live2ActionPage } from '../pages/live2/action/action';
   declarations: [
     MyApp,
     BuilderHomePage,
+    SettingsPage,
+
+    ShareHomePage,
+    ShareFilePage,
+    ShareSendPage,
 
     EditorHomePage,
     EditorCategoryPage,
@@ -46,6 +56,11 @@ import { Live2ActionPage } from '../pages/live2/action/action';
   entryComponents: [
     MyApp,
     BuilderHomePage,
+    SettingsPage,
+    
+    ShareHomePage,
+    ShareFilePage,
+    ShareSendPage,
 
     EditorHomePage,
     EditorCategoryPage,
