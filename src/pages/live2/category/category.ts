@@ -26,7 +26,7 @@ export class Live2CategoryPage {
     this.action = this.actions[0];
   }
   ionViewDidLoad() {
-    console.log('Loaded CategoryPage.');
+    //console.log('Loaded CategoryPage.');
   }
   goToActionPage(action, category){
     this.navCtrl.push(Live2ActionPage, {

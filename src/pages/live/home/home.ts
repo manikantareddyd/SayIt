@@ -16,7 +16,7 @@ export class LiveHomePage {
   ) {
     this.sayItService.getCategories().then((categories)=>{
       this.categories = categories;
-      console.log("Fetched Data.\n", JSON.stringify(categories));
+      //console.log("Fetched Data.\n", JSON.stringify(categories));
     })
   }
 

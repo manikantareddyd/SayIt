@@ -20,17 +20,17 @@ export class SettingsPage {
     ) {
       this.modeservice.getMode().then((mode)=>{
         this.mode = mode;
-        console.log("settings current mode", mode);
+        //console.log("settings current mode", mode);
       });
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+    //console.log('ionViewDidLoad SettingsPage');
   }
 
   updateMode(mode){
     this.mode = mode;
-    console.log("in settings.ts changed to ", this.mode);
+    //console.log("in settings.ts changed to ", this.mode);
     this.modeservice.updateMode(this.mode);
   }
 

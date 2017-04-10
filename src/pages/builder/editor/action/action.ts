@@ -24,13 +24,13 @@ export class EditorActionPage {
     this.action = this.navParams.get('action');
     this.category = this.navParams.get('category');
     this.mode = this.navParams.get('mode');
-    this.events.subscribe('reloadActionImage', ()=>{
-      this.action['image'] = this.pictureService.getUpdatedAction['image'];
+    this.events.subscribe('reloadActionImage', (data)=>{
+      this.action['image'] = data[0]['image'];
     })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ActionPage');
+    //console.log('ionViewDidLoad ActionPage');
   }
 
   speakAction(action){
@@ -45,13 +45,13 @@ export class EditorActionPage {
         {
           text: 'Disagree',
           handler: () => {
-            console.log('Disagree clicked');
+            //console.log('Disagree clicked');
           }
         },
         {
           text: 'Agree',
           handler: () => {
-            console.log('Agree clicked');
+            //console.log('Agree clicked');
             this.sayItService.removeAction(action, category);
             this.navCtrl.pop();
           }

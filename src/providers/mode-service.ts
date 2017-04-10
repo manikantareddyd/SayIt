@@ -13,13 +13,13 @@ export class ModeService {
   KEY_MODE = "st.mode";
   mode;
   constructor(public storage: Storage) {
-    console.log('Hello ModeService Provider');
+    //console.log('Hello ModeService Provider');
   }
   
 
   updateMode(mode){
     this.mode = mode;
-    console.log("in mode service changed to ", mode);
+    //console.log("in mode service changed to ", mode);
     this.storage.set(this.KEY_MODE, this.mode);
     return this.mode;
   }
@@ -33,7 +33,7 @@ export class ModeService {
       this.storage.get(this.KEY_MODE).then((mode)=>{
         if(!mode){
           this.mode = "mode1";
-          console.log(this.mode, "service promise");
+          //console.log(this.mode, "service promise");
         }
         else{
           this.mode = mode;

@@ -9,7 +9,6 @@ export class SayItService {
   categories;
   constructor(public storage: Storage) {
     // storage.clear();
-    console.log('SayItService initialized');
   }
 
   /*
@@ -147,9 +146,7 @@ export class SayItService {
   }
 
   speakAction(action){
-    TextToSpeech.speak(action['text']).then(
-      () => console.log("Action Text succesfully spoken.")
-    ).catch(
+    TextToSpeech.speak(action['text']).catch(
       (reason: any) => console.log("Couldn't speak action text", reason)
     );
   }

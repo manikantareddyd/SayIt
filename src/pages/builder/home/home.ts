@@ -29,7 +29,7 @@ export class BuilderHomePage {
         {
           text: 'Disagree',
           handler: () => {
-            console.log('Disagree clicked');
+            //console.log('Disagree clicked');
           }
         },
         {

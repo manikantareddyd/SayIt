@@ -19,7 +19,6 @@ export class PictureService {
     public events: Events,
     public sayItService: SayItService
   ) {
-    console.log('Hello PictureService Provider');
   }
   
   takeCategoryPicture(category, sourceType) {
@@ -43,14 +42,15 @@ export class PictureService {
     // Get the data of an image
     Camera.getPicture(options).then((imagePath) => {
       // Special handling for Android library
-      if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
+      if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) 
+      {
         FilePath.resolveNativePath(imagePath)
         .then(filePath => {
             let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
             let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
           this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
         });
-      } else {
+      }else {
         var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
         var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
         this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
@@ -65,16 +65,19 @@ export class PictureService {
   }
   
   // Copy the image to a local folder
-  copyCategoryFileToLocalDir(category, namePath, currentName, newFileName) {
-    File.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
-      category.image = cordova.file.dataDirectory + newFileName;
-      this.category = category;
-      this.sayItService.updateCategory(category);
-      this.events.publish('reloadEditorHomeData');
-      this.events.publish('reloadCategoryImage');
-    }, error => {
-      this.presentToast('Error while storing file.');
-    });
+  copyCategoryFileToLocalDir(category, namePath, currentName, newFileName) 
+  {
+    File.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(
+      success => {
+        category.image = cordova.file.dataDirectory + newFileName;
+        this.category = category;
+        this.sayItService.updateCategory(category);
+        this.events.publish('reloadEditorHomeData');
+        this.events.publish('reloadCategoryImage', category);
+      }, error => {
+        this.presentToast('Error while storing file.');
+      }
+    );
   }
 
   /************************************************/
@@ -88,12 +91,12 @@ export class PictureService {
     }
     // Create options for the Camera Dialog
     var options = {
-      quality: 75,
+      quality: 60,
       sourceType: sourceType,
       allowEdit: true,
       encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 480,
-      targetHeight: 480,
+      targetWidth: 360,
+      targetHeight: 360,
       saveToPhotoAlbum: false,
       correctOrientation:true
     };
@@ -125,7 +128,7 @@ export class PictureService {
       this.action = action;
       this.sayItService.updateAction(action, category);
       this.events.publish('reloadEditorCategoryData');
-      this.events.publish('reladActionImage');
+      this.events.publish('reladActionImage', action);
     }, error => {
       this.presentToast('Error while storing file.');
     });

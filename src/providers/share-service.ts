@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Murmurhash3Gc } from "../providers/murmurhash3-gc";
+
 import 'rxjs/add/operator/map';
 
 declare var cordova: any;
@@ -17,19 +19,24 @@ export class ShareService {
   constructor(
     public http: Http,
     public file: File,
-    public ss: SocialSharing
+    public ss: SocialSharing,
+    public mmh3gc: Murmurhash3Gc 
   ) {
-    console.log('Hello ShareService Provider');
   }
 
   share(categories){
+    var category_str = JSON.stringify(categories);
+    var hash = this.mmh3gc.getHash(category_str, 42).toString();
+    console.log(hash);
+    var data = {"hash":hash, "categories":categories};
+    var msg = "Actions for SayIt App. Refer to sayit help."
     this.file.writeFile(
       cordova.file.dataDirectory, 
-      "sayit_data.json", 
-      JSON.stringify(categories), 
+      "sayit.data", 
+      JSON.stringify(data), 
       true).then(
         (update) => {
-          this.ss.share("Actions for SayIt App", "SayIt Data", cordova.file.dataDirectory+"/sayit_data.json", "").then(
+          this.ss.share(msg, "SayIt Data", cordova.file.dataDirectory+"/sayit.data", "").then(
             (update) => {
             }
           ).catch(

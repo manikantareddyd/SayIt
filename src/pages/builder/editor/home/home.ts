@@ -32,7 +32,7 @@ export class EditorHomePage {
   }
 
   ionViewDidLoad() {
-    console.log('Loaded EditorHomePage');
+    //console.log('Loaded EditorHomePage');
   }
 
 
@@ -51,13 +51,13 @@ export class EditorHomePage {
         {
           text: 'Disagree',
           handler: () => {
-            console.log('Disagree clicked');
+            //console.log('Disagree clicked');
           }
         },
         {
           text: 'Agree',
           handler: () => {
-            console.log('Agree clicked');
+            //console.log('Agree clicked');
             this.categories = this.sayItService.removeCategory(category);
           }
         }

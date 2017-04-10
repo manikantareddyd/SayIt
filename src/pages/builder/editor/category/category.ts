@@ -30,13 +30,13 @@ export class EditorCategoryPage {
     this.events.subscribe('reloadEditorCategoryData',()=>{
       this.actions = this.sayItService.getActionsArray(this.category);
     });
-    this.events.subscribe('reloadCategoryImage', ()=>{
-      this.category['image'] = this.pictureService.getUpdatedCategory()['image'];
+    this.events.subscribe('reloadCategoryImage', (data)=>{
+      this.category['image'] = data[0]['image'];
     })
   }
 
   ionViewDidLoad() {
-    console.log('Loaded CategoryPage');
+    //console.log('Loaded CategoryPage');
   }
 
 
@@ -56,13 +56,13 @@ export class EditorCategoryPage {
         {
           text: 'Disagree',
           handler: () => {
-            console.log('Disagree clicked');
+            //console.log('Disagree clicked');
           }
         },
         {
           text: 'Agree',
           handler: () => {
-            console.log('Agree clicked');
+            //console.log('Agree clicked');
             this.actions = this.sayItService.removeAction(action, category);
           }
         }
@@ -87,13 +87,13 @@ export class EditorCategoryPage {
         {
           text: 'Disagree',
           handler: () => {
-            console.log('Disagree clicked');
+            //console.log('Disagree clicked');
           }
         },
         {
           text: 'Agree',
           handler: () => {
-            console.log('Agree clicked');
+            //console.log('Agree clicked');
             this.sayItService.removeCategory(category);
             this.navCtrl.pop();
           }

@@ -8,6 +8,7 @@ import { SayItService } from '../providers/sayit-service';
 import { ShareService } from '../providers/share-service';
 import { ModeService } from '../providers/mode-service';
 import { PictureService } from '../providers/picture-service';
+import { Murmurhash3Gc } from '../providers/murmurhash3-gc';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -87,6 +88,7 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     SayItService,
     ShareService,
     ModeService,
+    Murmurhash3Gc,
     PictureService,
     File,
     SocialSharing

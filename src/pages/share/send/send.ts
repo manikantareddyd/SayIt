@@ -15,6 +15,9 @@ import { ShareService } from '../../../providers/share-service';
 })
 export class ShareSendPage {
   categories;
+  enable;
+  nc =0;
+  state = true;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -24,13 +27,27 @@ export class ShareSendPage {
   ) {
     this.sayItService.getCategories().then((categories)=>{
       this.categories = this.addCheck(categories);
-      console.log("Fetched Data.\n", categories);
+      //console.log("Fetched Data.\n", categories);
     })
   }
-
+  nCheck(t){
+    var nc = this.nc
+    if(t)
+    {
+      nc = nc + 1;
+    }
+    else
+    {
+      nc = nc - 1;
+    }
+    this.nc = nc;
+    if(nc == 0) this.state = true;
+    else this.state = false;
+    console.log(nc, this.state);
+  }
   addCheck(categories){
     var i=0, j=0;
-    console.log(categories);
+    //console.log(categories);
     for(i=0;i<categories.length;i++)
     {
       if(!categories[i].actions)
@@ -43,7 +60,7 @@ export class ShareSendPage {
     return categories;
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SendPage');
+    //console.log('ionViewDidLoad SendPage');
   }
 
   shareActions(categories){
@@ -86,14 +103,14 @@ export class ShareSendPage {
         {
           text: "Disagree",
           handler: () => {
-            console.log("Disagree Clicked");
+            //console.log("Disagree Clicked");
           }
         },
         {
           text: "Agree",
           handler: () => {
-            // console.log("Selected Data.\n", categories);
-            console.log("Agree Clicked");
+            // //console.log("Selected Data.\n", categories);
+            //console.log("Agree Clicked");
             this.shareActions(JSON.parse(JSON.stringify(categories)));
           }
         }

@@ -17,7 +17,7 @@ export class ShareHomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ShareHomePage');
+    //console.log('ionViewDidLoad ShareHomePage');
   }
   
   goToFilePage(){

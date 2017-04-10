@@ -53,13 +53,13 @@
             <div class="subtitle">{{action.title}}</div>
             <div class="subtitle2">{{action.text}}</div>
           </ion-label>
-          <ion-checkbox [(ngModel)]="action.check"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="action.check" (ionChange)="nCheck(action.check)"></ion-checkbox>
         </ion-item>
       </ion-list>
     </ion-card>
     
   </ion-list>
   <div style="text-align: center;">
-    <button (click)="sendClicked(categories)" ion-button round>Send</button>
+    <button (click)="sendClicked(categories)" (disabled)="state" ion-button round>Send {{state}} {{nc}}</button>
   </div>
 </ion-content>

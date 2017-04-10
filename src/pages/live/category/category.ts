@@ -24,7 +24,7 @@ export class LiveCategoryPage {
     this.actions = this.sayItService.getActionsArray(this.category);
   }
   ionViewDidLoad() {
-    console.log('Loaded CategoryPage.');
+    //console.log('Loaded CategoryPage.');
   }
   goToActionPage(action, category){
     this.navCtrl.push(LiveActionPage, {
