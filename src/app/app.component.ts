@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
+
+import { ModeService } from '../providers/mode-service';
+
 import { BuilderHomePage } from '../pages/builder/home/home';
 import { ShareHomePage } from '../pages/share/home/home';
 import { LiveHomePage } from '../pages/live/home/home';
@@ -14,13 +17,18 @@ import { SettingsPage } from "../pages/settings/settings";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LiveHomePage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public modeservice: ModeService) {
+    this.modeservice.getMode().then((mode)=>{
+      if(mode=="mode1")
+        this.rootPage = LiveHomePage;
+      else
+        this.rootPage = Live2HomePage;
+    });
     this.initializeApp();
-
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Mode 1', component: LiveHomePage },
@@ -29,7 +37,7 @@ export class MyApp {
       { title: 'Share', component: ShareHomePage}, 
       { title: 'Settings', component: SettingsPage}
     ];
-
+  
   }
 
   initializeApp() {

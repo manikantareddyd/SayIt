@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { SayItService } from '../../providers/sayit-service';
+import { ModeService } from '../../providers/mode-service';
 /*
   Generated class for the Settings page.
 
@@ -16,19 +16,22 @@ export class SettingsPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public sayitservice: SayItService
+    public modeservice: ModeService
     ) {
-      this.sayitservice.getMode().then((mode)=>{
+      this.modeservice.getMode().then((mode)=>{
         this.mode = mode;
-      })
+        console.log("settings current mode", mode);
+      });
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
 
-  updateMode(){
-    this.sayitservice.updateMode(mode);
+  updateMode(mode){
+    this.mode = mode;
+    console.log("in settings.ts changed to ", this.mode);
+    this.modeservice.updateMode(this.mode);
   }
 
 }

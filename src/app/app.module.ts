@@ -6,6 +6,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SayItService } from '../providers/sayit-service';
 import { ShareService } from '../providers/share-service';
+import { ModeService } from '../providers/mode-service';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -84,6 +85,7 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     }, 
     SayItService,
     ShareService,
+    ModeService,
     File,
     SocialSharing
   ]

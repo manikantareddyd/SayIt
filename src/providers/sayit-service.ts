@@ -37,13 +37,7 @@ export class SayItService {
     ]
   */
 
-  updateMode(mode){
-    
-  }
-
-  getMode(){
-
-  }
+  
   generateCategoryKey(){
     var last = this.categories.length - 1;
     var newKey = 0;
