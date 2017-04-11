@@ -24,8 +24,8 @@ export class EditorActionPage {
     this.action = this.navParams.get('action');
     this.category = this.navParams.get('category');
     this.mode = this.navParams.get('mode');
-    this.events.subscribe('reloadActionImage', (data)=>{
-      this.action['image'] = data[0]['image'];
+    this.events.subscribe('reloadActionImage', (action)=>{
+      this.action['image'] = action['image'];
     })
   }
 

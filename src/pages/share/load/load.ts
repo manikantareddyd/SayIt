@@ -8,10 +8,10 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-share-file',
-  templateUrl: 'file.html'
+  selector: 'page-share-load',
+  templateUrl: 'load.html'
 })
-export class ShareFilePage {
+export class ShareLoadPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

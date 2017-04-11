@@ -43,7 +43,6 @@ export class ShareSendPage {
     this.nc = nc;
     if(nc == 0) this.state = true;
     else this.state = false;
-    console.log(nc, this.state);
   }
   addCheck(categories){
     var i=0, j=0;

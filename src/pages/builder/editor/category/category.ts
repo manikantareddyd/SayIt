@@ -30,8 +30,8 @@ export class EditorCategoryPage {
     this.events.subscribe('reloadEditorCategoryData',()=>{
       this.actions = this.sayItService.getActionsArray(this.category);
     });
-    this.events.subscribe('reloadCategoryImage', (data)=>{
-      this.category['image'] = data[0]['image'];
+    this.events.subscribe('reloadCategoryImage', (category)=>{
+      this.category['image'] = category['image'];
     })
   }
 

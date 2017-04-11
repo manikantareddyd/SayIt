@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ShareFilePage } from "../file/file";
+import { ShareLoadPage } from "../load/load";
 import { ShareSendPage } from "../send/send";
 /*
   Generated class for the Share page.
@@ -21,7 +21,7 @@ export class ShareHomePage {
   }
   
   goToFilePage(){
-    this.navCtrl.push(ShareFilePage);
+    this.navCtrl.push(ShareLoadPage);
   }
 
   goToSendPage(){

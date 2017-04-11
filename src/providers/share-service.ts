@@ -31,12 +31,12 @@ export class ShareService {
     var data = {"hash":hash, "categories":categories};
     var msg = "Actions for SayIt App. Refer to sayit help."
     this.file.writeFile(
-      cordova.file.dataDirectory, 
+      this.file.dataDirectory, 
       "sayit.data", 
       JSON.stringify(data), 
       true).then(
         (update) => {
-          this.ss.share(msg, "SayIt Data", cordova.file.dataDirectory+"/sayit.data", "").then(
+          this.ss.share(msg, "SayIt Data", this.file.dataDirectory+"/sayit.data", "").then(
             (update) => {
             }
           ).catch(

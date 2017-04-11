@@ -18,7 +18,7 @@ import { EditorCategoryPage } from '../pages/builder/editor/category/category';
 import { EditorActionPage } from '../pages/builder/editor/action/action';
 
 import { ShareHomePage } from '../pages/share/home/home';
-import { ShareFilePage } from '../pages/share/file/file';
+import { ShareLoadPage } from '../pages/share/load/load';
 import { ShareSendPage } from '../pages/share/send/send';
 
 
@@ -39,7 +39,7 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     SettingsPage,
 
     ShareHomePage,
-    ShareFilePage,
+    ShareLoadPage,
     ShareSendPage,
 
     EditorHomePage,
@@ -65,7 +65,7 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     SettingsPage,
     
     ShareHomePage,
-    ShareFilePage,
+    ShareLoadPage,
     ShareSendPage,
 
     EditorHomePage,
@@ -81,17 +81,17 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     Live2ActionPage
   ],
   providers: [
+    File,
     {
       provide: ErrorHandler, 
       useClass: IonicErrorHandler
-    }, 
+    },
+    SocialSharing,
     SayItService,
     ShareService,
     ModeService,
     Murmurhash3Gc,
-    PictureService,
-    File,
-    SocialSharing
+    PictureService
   ]
 })
 export class AppModule {}

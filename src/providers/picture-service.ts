@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { AlertController, Events, ActionSheetController, ToastController, Platform, LoadingController } from 'ionic-angular';
-import { Camera, File, FilePath } from 'ionic-native';
+import { Camera,  FilePath } from 'ionic-native';
+import { File } from '@ionic-native/file';
 import { SayItService } from "../providers/sayit-service";
 
 declare var cordova: any;
@@ -17,6 +18,7 @@ export class PictureService {
     public platform: Platform, 
     public loadingCtrl: LoadingController,
     public events: Events,
+    public file: File,
     public sayItService: SayItService
   ) {
   }
@@ -56,6 +58,7 @@ export class PictureService {
         this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
       }
     }, (err) => {
+      console.log("get cat pic", err);
       this.presentToast('Error while selecting image.');
     });
   }
@@ -67,14 +70,15 @@ export class PictureService {
   // Copy the image to a local folder
   copyCategoryFileToLocalDir(category, namePath, currentName, newFileName) 
   {
-    File.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(
+    this.file.copyFile(namePath, currentName, this.file.dataDirectory, newFileName).then(
       success => {
-        category.image = cordova.file.dataDirectory + newFileName;
+        category.image = this.file.dataDirectory + newFileName;
         this.category = category;
         this.sayItService.updateCategory(category);
         this.events.publish('reloadEditorHomeData');
         this.events.publish('reloadCategoryImage', category);
       }, error => {
+        console.log("copy cat pic", error );
         this.presentToast('Error while storing file.');
       }
     );
@@ -103,6 +107,7 @@ export class PictureService {
     // Get the data of an image
     Camera.getPicture(options).then((imagePath) => {
       // Special handling for Android library
+      console
       if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
         FilePath.resolveNativePath(imagePath)
         .then(filePath => {
@@ -116,6 +121,7 @@ export class PictureService {
         this.copyActionFileToLocalDir(action, category, correctPath, currentName, this.createFileName());
       }
     }, (err) => {
+      console.log("get action pic", err);
       this.presentToast('Error while selecting image.');
     });
   }
@@ -123,13 +129,14 @@ export class PictureService {
   // Create a new name for the image
   // Copy the image to a local folder
   private copyActionFileToLocalDir(action, category, namePath, currentName, newFileName) {
-    File.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
-      action.image = cordova.file.dataDirectory + newFileName;
+    this.file.copyFile(namePath, currentName, this.file.dataDirectory, newFileName).then(success => {
+      action.image = this.file.dataDirectory + newFileName;
       this.action = action;
       this.sayItService.updateAction(action, category);
       this.events.publish('reloadEditorCategoryData');
       this.events.publish('reladActionImage', action);
     }, error => {
+      console.log("copy action pic",error);
       this.presentToast('Error while storing file.');
     });
   }
@@ -161,7 +168,7 @@ export class PictureService {
     if (img === null) {
       return '';
     } else {
-      return cordova.file.dataDirectory + img;
+      return this.file.dataDirectory + img;
     }
   }
 

@@ -60,6 +60,7 @@
     
   </ion-list>
   <div style="text-align: center;">
-    <button (click)="sendClicked(categories)" (disabled)="state" ion-button round>Send {{state}} {{nc}}</button>
+    <button (click)="sendClicked(categories)" *ngIf="!state" ion-button round>Send</button>
+    <button (click)="sendClicked(categories)" disabled="true" *ngIf="state" ion-button round>Send</button>
   </div>
 </ion-content>
