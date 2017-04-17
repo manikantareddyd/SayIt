@@ -3,18 +3,20 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { EditorHomePage } from '../editor/home/home';
 import { Storage } from "@ionic/storage";
+import { SayItService } from "../../../providers/sayit-service";
 @Component({
   selector: 'page-builder-home',
   templateUrl: 'home.html'
 })
 export class BuilderHomePage {
-
+  defaultImg;
   constructor(
     public navCtrl: NavController,
     public storage: Storage,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public SayItService: SayItService
   ) {
-    
+    this.defaultImg = this.SayItService.defaultImg;
   }
 
   goToEditorHome(){

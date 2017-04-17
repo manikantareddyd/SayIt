@@ -118,7 +118,7 @@ export class EditorCategoryPage {
   }
 
   deleteCategoryPicture(category){
-    category.image = "assets/img/bg.png";
+    category.image = this.sayItService.defaultImg;
     this.category = category;
     this.sayItService.updateCategory(category);
     this.events.publish('reloadEditorHomeData');

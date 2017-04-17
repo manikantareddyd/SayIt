@@ -7,6 +7,7 @@ import { TextToSpeech } from 'ionic-native';
 export class SayItService {
   KEY_CATEGORIES = 'st.categories';
   categories;
+  defaultImg = "assets/img/bg.png";
   constructor(public storage: Storage) {
     // storage.clear();
   }
@@ -58,7 +59,7 @@ export class SayItService {
     }
     let categoryKey = this.generateCategoryKey();
     category['key'] = categoryKey;
-    category['image'] = "assets/img/bg2.png";
+    category['image'] = this.defaultImg;
     this.categories[categoryKey] = category;
     this.storage.set(this.KEY_CATEGORIES, this.categories);
     return this.getCategoriesArray();
@@ -125,7 +126,7 @@ export class SayItService {
     let actionKey = this.generateActionKey(category);
     let categoryKey = category['key']
     action['key'] = actionKey;
-    action['image'] = 'assets/img/bg2.png';
+    action['image'] = this.defaultImg;
     category['actions'][actionKey] = action;
     this.categories[categoryKey] = category;
     this.storage.set(this.KEY_CATEGORIES, this.categories);

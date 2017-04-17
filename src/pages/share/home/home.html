@@ -17,14 +17,14 @@
 
 <ion-content class="card-background-page">
   <ion-card (click)="goToFilePage()">
-    <img src="assets/img/bg.png"/>
+    <img src={{defaultImg}}/>
     <div class="card-title">
       <ion-icon name="download"></ion-icon>
     </div>
     <div class="card-subtitle">Select .json file from files</div>
   </ion-card>
   <ion-card (click)="goToSendPage()">
-    <img src="assets/img/bg.png"/>
+    <img src={{defaultImg}}/>
     <div class="card-title"><ion-icon name="cloud-upload"></ion-icon></div>
     <div class="card-subtitle">Send Actions To others</div>
   </ion-card>

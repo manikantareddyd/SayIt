@@ -75,7 +75,7 @@ export class EditorActionPage {
 
 
   deleteActionPicture(action, category){
-    action.image = "assets/img/bg.png";
+    action.image = this.sayItService.defaultImg;
     this.action = action;
     this.sayItService.updateAction(action, category);
     this.events.publish('reloadEditorCategoryData');

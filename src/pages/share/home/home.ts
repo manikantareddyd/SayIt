@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ShareLoadPage } from "../load/load";
 import { ShareSendPage } from "../send/send";
 import { LoadService } from '../../../providers/load-service';
+import { SayItService } from '../../../providers/sayit-service';
 
 /*
   Generated class for the Share page.
@@ -15,12 +16,15 @@ import { LoadService } from '../../../providers/load-service';
   templateUrl: 'home.html'
 })
 export class ShareHomePage {
-
+  defaultImg;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public loadService: LoadService
-    ) {}
+    public loadService: LoadService,
+    public sayItService: SayItService
+    ) {
+      this.defaultImg = this.sayItService.defaultImg;
+    }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad ShareHomePage');
