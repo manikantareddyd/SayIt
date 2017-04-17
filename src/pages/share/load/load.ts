@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { LoadService } from '../../../providers/load-service';
 /*
   Generated class for the File page.
 
@@ -13,10 +13,16 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ShareLoadPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public loadService: LoadService,
+    ) {}
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad FilePage');
   }
+
+  
 
 }

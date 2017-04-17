@@ -2,10 +2,12 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SayItService } from '../providers/sayit-service';
 import { ShareService } from '../providers/share-service';
+import { LoadService } from '../providers/load-service';
 import { ModeService } from '../providers/mode-service';
 import { PictureService } from '../providers/picture-service';
 import { Murmurhash3Gc } from '../providers/murmurhash3-gc';
@@ -82,16 +84,18 @@ import { Live2ActionPage } from '../pages/live2/action/action';
   ],
   providers: [
     File,
+    FileChooser,
+    SocialSharing,
     {
       provide: ErrorHandler, 
       useClass: IonicErrorHandler
     },
-    SocialSharing,
     SayItService,
     ShareService,
     ModeService,
     Murmurhash3Gc,
-    PictureService
+    PictureService,
+    LoadService
   ]
 })
 export class AppModule {}

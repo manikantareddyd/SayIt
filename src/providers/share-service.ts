@@ -32,10 +32,12 @@ export class ShareService {
       "hash":hash, 
       "categories":categories
     };
+    console.log(JSON.stringify(data));
     var msg = "Actions for SayIt App. Refer to sayit help."
-    this.file.checkFile(
+    this.writeExistingFile(msg, data);
+    /*this.file.checkFile(
       this.file.dataDirectory, 
-      "sayit.data"
+      "sayit.txt"
     ).then(
       (state) => {
         if(state){
@@ -45,13 +47,15 @@ export class ShareService {
           this.writeNew(msg, data);
         }
       }
-    );
+    ).catch((e)=>{
+      console.log("couldnt find state", e);
+    });*/
   }
 
   writeNew(msg, data){
     this.file.writeFile(
       this.file.dataDirectory, 
-      "sayit.data", 
+      "sayit.txt", 
       JSON.stringify(data), 
       true
     ).then(
@@ -68,20 +72,21 @@ export class ShareService {
   writeExistingFile(msg, data){
     this.file.removeFile(
       this.file.dataDirectory,
-      "sayit.data"
+      "sayit.txt"
     ).then(
       ()=>{
         this.writeNew(msg, data);
       }
     ).catch(
       (er)=>{
+        this.writeNew(msg, data);
         console.log(er);
       }
     )
   }
 
   invokeShare(msg){
-    this.ss.share(msg, "SayIt Data", this.file.dataDirectory+"/sayit.data", "")
+    this.ss.share(msg, "SayIt Data", this.file.dataDirectory+"/sayit.txt", "")
     .then(
       (update) => {
       }

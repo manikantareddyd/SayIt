@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShareLoadPage } from "../load/load";
 import { ShareSendPage } from "../send/send";
+import { LoadService } from '../../../providers/load-service';
+
 /*
   Generated class for the Share page.
 
@@ -14,15 +16,22 @@ import { ShareSendPage } from "../send/send";
 })
 export class ShareHomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public loadService: LoadService
+    ) {}
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad ShareHomePage');
   }
   
   goToFilePage(){
-    this.navCtrl.push(ShareLoadPage);
+    // this.navCtrl.push(ShareLoadPage);
+    this.loadService.LoadFromFile();
   }
+
+
 
   goToSendPage(){
     this.navCtrl.push(ShareSendPage);

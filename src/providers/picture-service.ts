@@ -36,8 +36,8 @@ export class PictureService {
       sourceType: sourceType,
       allowEdit: true,
       encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 480,
-      targetHeight: 480,
+      targetWidth: 300,
+      targetHeight: 300,
       saveToPhotoAlbum: false,
       correctOrientation:true
     };
@@ -48,8 +48,9 @@ export class PictureService {
       {
         FilePath.resolveNativePath(imagePath)
         .then(filePath => {
-            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+          console.log(filePath);
+          let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+          let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
           this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
         });
       }else {
@@ -99,8 +100,8 @@ export class PictureService {
       sourceType: sourceType,
       allowEdit: true,
       encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 360,
-      targetHeight: 360,
+      targetWidth: 300,
+      targetHeight: 300,
       saveToPhotoAlbum: false,
       correctOrientation:true
     };

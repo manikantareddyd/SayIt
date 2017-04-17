@@ -80,6 +80,13 @@ export class SayItService {
     return this.getCategoriesArray();
   }
 
+  updateCategoryWithActions(category){
+    var categoryKey = categoryKey;
+    this.categories[categoryKey]['actions'] = category['actions'];
+    this.storage.set(this.KEY_CATEGORIES, this.categories);
+    return this.getCategoriesArray();
+  }
+
   getCategories(){
     var promise = new Promise((resolve, reject) => {
       this.storage.get(this.KEY_CATEGORIES).then((categories) => {
@@ -151,7 +158,39 @@ export class SayItService {
     );
   }
 
-  shareCategory(category){
+  loadFromJSONData(data){
+    var i=0;
+    var currentCategories = this.categories;
+    var check, index;
+    console.log('data', data);
+    try{
+      for(i=0; i<data.length; i++){
+        check = this.checkIfCategoryPresent(data[i]);
+        if(!check[0]){
+          console.log("new category");
+          this.addCategory(data[i]);
+        }
+        else{
+          data[i]['key']=this.categories[check[1]]['key'];
+          data[i]['image'] = this.categories[check[1]]['image'];
+          console.log("cat exists. Updating");
+          this.updateCategoryWithActions(data[i]);
+        }
+      }
+    }
+    catch(e){
+      console.log(e, "oops");
+    }
+  
+    
+  }
 
+  checkIfCategoryPresent(category){
+    var i=0;
+    for(i=0; i<this.categories.length; i++){
+      if(this.categories[i]['title'] == category['title'])
+        return [true, i];
+    return [false, 0];
+    }
   }
 }
