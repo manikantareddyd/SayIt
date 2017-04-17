@@ -15,8 +15,17 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.card-background-page {
 
+@font-face {
+font-family: AppFont;
+src: url("../assets/fonts/JosefinSans/JosefinSans-Regular.ttf");
+}
+
+ion-app {
+font-family: 'AppFont' !important;
+}
+
+.card-background-page {
   ion-card {
     position: relative;
     text-align: center;

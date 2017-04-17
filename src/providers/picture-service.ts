@@ -34,7 +34,7 @@ export class PictureService {
     var options = {
       quality: 75,
       sourceType: sourceType,
-      allowEdit: true,
+      // allowEdit: true,
       encodingType: Camera.EncodingType.JPEG,
       targetWidth: 300,
       targetHeight: 300,
@@ -54,9 +54,9 @@ export class PictureService {
           this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
         });
       }else {
-        var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
+        // var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        // var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+        // this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
       }
     }, (err) => {
       console.log("get cat pic", err);
