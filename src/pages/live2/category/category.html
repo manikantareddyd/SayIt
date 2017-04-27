@@ -22,7 +22,7 @@
         No Actions Available
       </ion-card-header>
     </ion-card>
-    <ion-card (click)="goToActionPage(action, category)">
+    <ion-card *ngIf="actions.length != 0" (click)="goToActionPage(action, category)">
       <img src="{{action.image}}"/>
       <ion-row no-padding>
         <ion-col>
@@ -32,7 +32,7 @@
         </ion-col>
       </ion-row>
     </ion-card>
-    <ion-row class="joystick">
+    <ion-row class="joystick" *ngIf="actions.length != 0">
       <ion-col >
         <svg height="75%" width="100%" viewBox="0 0 100 100">
           <path d="M50,14 54,22 46,22Z" fill="rgba(0,0,0,0.8)" />

@@ -22,16 +22,18 @@ export class Live2CategoryPage {
     public sayItService: SayItService
   ) {
     this.category = this.navParams.get('category');
-    this.actions = this.sayItService.getActionsArray(this.category);
+    this.actions = this.category.actions;
+    // this.actions = this.sayItService.getActionsArray(this.category);
     this.action = this.actions[0];
   }
   ionViewDidLoad() {
     //console.log('Loaded CategoryPage.');
   }
   goToActionPage(action, category){
-    this.navCtrl.push(Live2ActionPage, {
-      action: action
-    });
+    this.sayItService.speakAction(action);
+    // this.navCtrl.push(Live2ActionPage, {
+    //   action: action
+    // });
   }
 
   goBack(){

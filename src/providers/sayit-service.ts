@@ -1,17 +1,76 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
-import { TextToSpeech } from 'ionic-native';
+import { TextToSpeech } from '@ionic-native/text-to-speech';
 
 @Injectable()
 export class SayItService {
   KEY_CATEGORIES = 'st.categories';
+  KEY_BOOTCOUNT = 'st.boot';
   categories;
   defaultImg = "assets/img/bg.png";
-  constructor(public storage: Storage) {
+  BootCount = 0;
+  defaultCats = [
+            {
+              "title": "Food",
+              "image": "assets/boot/food.png",
+              "actions":[
+                {
+                  "title":"Good Food",
+                  "text": "This Food is delicious",
+                  "image": "assets/boot/good_food.png"
+                },
+                {
+                  "title":"Hot Food",
+                  "text": "The Food is really Hot",
+                  "image": "assets/boot/hot_food.png"
+                }
+              ]
+            },
+            {
+              "title": "Water",
+              "image": "assets/boot/water.png",
+              "actions":[
+                {
+                  "title":"Thirsty",
+                  "text": "I am very thirsty",
+                  "image": "assets/boot/thirsty.png"
+                }
+              ]
+            }
+          ];
+  constructor(
+    public storage: Storage,
+    public tts: TextToSpeech
+  ) {
     // storage.clear();
   }
 
+  public getBoot()
+  {
+    return this.BootCount;
+  }
+
+  public firstBoot(){
+     return new Promise((resolve, reject) => {
+      this.storage.get(this.KEY_BOOTCOUNT).then((bootCount) => {
+        if(!bootCount)
+        {
+          this.BootCount += 1;
+          this.storage.set(this.KEY_CATEGORIES, this.defaultCats);
+          this.categories = this.defaultCats;
+          this.storage.set(this.KEY_BOOTCOUNT, this.BootCount);
+        }
+        else
+        {
+          this.BootCount = bootCount + 1;
+          this.storage.set(this.KEY_BOOTCOUNT, this.BootCount);
+        }
+        resolve(this.getBoot());
+      })
+    })
+    
+  }
   /*
     Model model
     categories = 
@@ -29,7 +88,7 @@ export class SayItService {
             ...           
           }
         ]
-      },
+      },categories
       {
         ...
       },
@@ -37,7 +96,10 @@ export class SayItService {
     ]
   */
 
-  
+  reset(){
+    this.storage.set('st.categories', this.defaultCats);
+    // this.storage.set('st.fBoot', 0);
+  }
   generateCategoryKey(){
     var last = this.categories.length - 1;
     var newKey = 0;
@@ -154,7 +216,7 @@ export class SayItService {
   }
 
   speakAction(action){
-    TextToSpeech.speak(action['text']).catch(
+    this.tts.speak(action['text']).catch(
       (reason: any) => console.log("Couldn't speak action text", reason)
     );
   }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { AlertController, Events, ActionSheetController, ToastController, Platform, LoadingController } from 'ionic-angular';
-import { Camera,  FilePath } from 'ionic-native';
+import { Camera } from '@ionic-native/camera';
+import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
 import { SayItService } from "../providers/sayit-service";
 
@@ -16,6 +17,8 @@ export class PictureService {
     public actionSheetCtrl: ActionSheetController,
     public toastCtrl: ToastController, 
     public platform: Platform, 
+    public camera: Camera,
+    public filepath: FilePath,
     public loadingCtrl: LoadingController,
     public events: Events,
     public file: File,
@@ -25,38 +28,38 @@ export class PictureService {
   
   takeCategoryPicture(category, sourceType) {
     if(sourceType=="library"){
-      sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+      sourceType = this.camera.PictureSourceType.PHOTOLIBRARY;
     }
     else{
-      sourceType = Camera.PictureSourceType.CAMERA;
+      sourceType = this.camera.PictureSourceType.CAMERA;
     }
     // Create options for the Camera Dialog
     var options = {
-      quality: 75,
+      quality: 100,
       sourceType: sourceType,
-      // allowEdit: true,
-      encodingType: Camera.EncodingType.JPEG,
+      allowEdit: true,
+      encodingType: this.camera.EncodingType.JPEG,
       targetWidth: 300,
       targetHeight: 300,
       saveToPhotoAlbum: false,
       correctOrientation:true
     };
     // Get the data of an image
-    Camera.getPicture(options).then((imagePath) => {
+    this.camera.getPicture(options).then((imagePath) => {
       // Special handling for Android library
-      if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) 
+      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) 
       {
-        FilePath.resolveNativePath(imagePath)
+        this.filepath.resolveNativePath(imagePath)
         .then(filePath => {
-          console.log(filePath);
+          console.log(filePath);filePath
           let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
           let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
           this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
         });
       }else {
-        // var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        // var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        // this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
+        var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+        this.copyCategoryFileToLocalDir(category, correctPath, currentName, this.createFileName());
       }
     }, (err) => {
       console.log("get cat pic", err);
@@ -89,28 +92,28 @@ export class PictureService {
 
   takeActionPicture(action, category, sourceType) {
     if(sourceType=="library"){
-      sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+      sourceType = this.camera.PictureSourceType.PHOTOLIBRARY;
     }
     else{
-      sourceType = Camera.PictureSourceType.CAMERA;
+      sourceType = this.camera.PictureSourceType.CAMERA;
     }
     // Create options for the Camera Dialog
     var options = {
-      quality: 60,
+      quality: 100,
       sourceType: sourceType,
       allowEdit: true,
-      encodingType: Camera.EncodingType.JPEG,
+      encodingType: this.camera.EncodingType.JPEG,
       targetWidth: 300,
       targetHeight: 300,
       saveToPhotoAlbum: false,
       correctOrientation:true
     };
     // Get the data of an image
-    Camera.getPicture(options).then((imagePath) => {
+    this.camera.getPicture(options).then((imagePath) => {
       // Special handling for Android library
       console
-      if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
-        FilePath.resolveNativePath(imagePath)
+      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filepath.resolveNativePath(imagePath)
         .then(filePath => {
             let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
             let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));

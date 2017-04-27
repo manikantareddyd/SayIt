@@ -27,9 +27,10 @@ export class LiveCategoryPage {
     //console.log('Loaded CategoryPage.');
   }
   goToActionPage(action, category){
-    this.navCtrl.push(LiveActionPage, {
-      action: action
-    });
+    this.sayItService.speakAction(action);
+    // this.navCtrl.push(LiveActionPage, {
+    //   action: action
+    // });
   }
 
   goBack(){

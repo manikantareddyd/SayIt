@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
 import { SayItService } from '../../../providers/sayit-service';
 
 import { LiveCategoryPage } from '../category/category';
@@ -12,12 +12,33 @@ export class LiveHomePage {
   categories;
   constructor(
     public navCtrl: NavController,
-    public sayItService: SayItService
+    public sayItService: SayItService,
+    public events: Events
   ) {
-    this.sayItService.getCategories().then((categories)=>{
-      this.categories = categories;
-      //console.log("Fetched Data.\n", JSON.stringify(categories));
-    })
+    // this.sayItService.firstBoot().then((fBoot)=>{
+    //   console.log(fBoot, 'fBoot', 'mode1');
+      
+    // });
+    
+    this.categories = this.sayItService.defaultCats;
+    this.sayItService.getCategories().then(
+        (categories)=>{
+          var fBoot = 1;
+          console.log('fBoot', fBoot, 'cats', categories);
+          try
+          {
+            if(Object.keys(categories).length)
+              this.categories = categories;
+            console.log("ooo", categories);
+          }
+          catch(e)
+          {
+          }
+          //console.log("Fetched Data.\n", JSON.stringify(categories));
+    });
+    this.events.subscribe('reloadEditorHomeData',()=>{
+      this.categories = this.sayItService.getCategoriesArray();
+    });
   }
 
   goToCategoryPage(category){

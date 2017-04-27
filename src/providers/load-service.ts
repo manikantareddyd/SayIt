@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { File } from '@ionic-native/file';
 import { Platform, ToastController } from 'ionic-angular';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { SayItService } from '../providers/sayit-service';
-import { FilePath } from 'ionic-native';
+import { FilePath } from '@ionic-native/file-path';
 import { Murmurhash3Gc } from "../providers/murmurhash3-gc";
 
 /*
@@ -20,6 +19,7 @@ export class LoadService {
   constructor(
       public file: File,
       public fileChooser: FileChooser,
+      public filepath: FilePath,
       public toastCtrl: ToastController,
       public sayItService: SayItService,
       public platform: Platform,
@@ -33,7 +33,7 @@ export class LoadService {
     .then(uri => {
       if (this.platform.is('android')) 
       {
-        FilePath.resolveNativePath(uri)
+        this.filepath.resolveNativePath(uri)
         .then(filePath => {
           console.log(filePath);
           let currentName = uri.substring(uri.lastIndexOf('/') + 1);

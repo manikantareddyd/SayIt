@@ -38,7 +38,7 @@ export class BuilderHomePage {
           text: 'Agree',
           handler: () => {    
             var categories = [];
-            this.storage.set('st.categories', categories);
+            this.SayItService.reset();
           }
         }
       ]

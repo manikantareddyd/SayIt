@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Murmurhash3Gc } from "../providers/murmurhash3-gc";
@@ -17,7 +16,6 @@ declare var cordova: any;
 export class ShareService {
 
   constructor(
-    public http: Http,
     public file: File,
     public ss: SocialSharing,
     public mmh3gc: Murmurhash3Gc 
@@ -86,7 +84,7 @@ export class ShareService {
   }
 
   invokeShare(msg){
-    this.ss.share(msg, "SayIt Data", this.file.dataDirectory+"/sayit.txt", "")
+    this.ss.share(msg, "SayItData.txt", this.file.dataDirectory+"/sayit.txt", "")
     .then(
       (update) => {
       }
