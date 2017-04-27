@@ -10,8 +10,6 @@ declare var cordova: any;
 
 @Injectable()
 export class PictureService {
-  category;
-  action;
   constructor(
     public alertCtrl: AlertController,
     public actionSheetCtrl: ActionSheetController,
@@ -66,10 +64,6 @@ export class PictureService {
       this.presentToast('Error while selecting image.');
     });
   }
-
-  getUpdatedCategory(){
-    return this.category;
-  }
   
   // Copy the image to a local folder
   copyCategoryFileToLocalDir(category, namePath, currentName, newFileName) 
@@ -77,7 +71,6 @@ export class PictureService {
     this.file.copyFile(namePath, currentName, this.file.dataDirectory, newFileName).then(
       success => {
         category.image = this.file.dataDirectory + newFileName;
-        this.category = category;
         this.sayItService.updateCategory(category);
         this.events.publish('reloadEditorHomeData');
         this.events.publish('reloadCategoryImage', category);
@@ -111,7 +104,6 @@ export class PictureService {
     // Get the data of an image
     this.camera.getPicture(options).then((imagePath) => {
       // Special handling for Android library
-      console
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
         this.filepath.resolveNativePath(imagePath)
         .then(filePath => {
@@ -135,7 +127,6 @@ export class PictureService {
   private copyActionFileToLocalDir(action, category, namePath, currentName, newFileName) {
     this.file.copyFile(namePath, currentName, this.file.dataDirectory, newFileName).then(success => {
       action.image = this.file.dataDirectory + newFileName;
-      this.action = action;
       this.sayItService.updateAction(action, category);
       this.events.publish('reloadEditorCategoryData');
       this.events.publish('reladActionImage', action);
@@ -146,9 +137,6 @@ export class PictureService {
   }
 
   /************************************************/
-  getUpdatedAction(){
-    return this.action;
-  }
 
   // Create a new name for the image
   createFileName() {
@@ -161,7 +149,7 @@ export class PictureService {
   presentToast(text) {
     let toast = this.toastCtrl.create({
       message: text,
-      duration: 3000,
+      duration: 5000,
       position: 'bottom'
     });
     toast.present();

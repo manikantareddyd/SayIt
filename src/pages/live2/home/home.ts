@@ -41,7 +41,7 @@ export class Live2HomePage {
       this.category = this.categories[0];
     });
   }
-
+  foo(){}
   goToCategoryPage(category){
     this.navCtrl.push(Live2CategoryPage, {
       category: category
@@ -49,15 +49,17 @@ export class Live2HomePage {
   }
 
   goNext(category){
-    var ind = this.categories.indexOf(category);
-    if(ind != this.categories.length - 1)
-      this.category = this.categories[ind+1];
+    var catkeys = Object.keys(this.categories);
+    var ind = catkeys.indexOf(category['key']);
+    if(ind != 0)
+      this.category = this.categories[catkeys[ind+1]];
   }
 
   goPrevious(category){
-    var ind = this.categories.indexOf(category);
+    var catkeys = Object.keys(this.categories);
+    var ind = catkeys.indexOf(category['key']);
     if(ind != 0)
-      this.category = this.categories[ind-1];
+      this.category = this.categories[catkeys[ind-1]];
   }
 
 }

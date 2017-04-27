@@ -117,14 +117,15 @@ export class SayItService {
 
   addCategory(category){
     if(category['title'] == ''){
-      return this.getCategoriesArray();
+      return [this.getCategoriesArray(),0];
     }
     let categoryKey = this.generateCategoryKey();
     category['key'] = categoryKey;
     category['image'] = this.defaultImg;
+    category['actions'] = [];
     this.categories[categoryKey] = category;
     this.storage.set(this.KEY_CATEGORIES, this.categories);
-    return this.getCategoriesArray();
+    return [this.getCategoriesArray(), categoryKey];
   }
 
   removeCategory(category){
@@ -243,7 +244,9 @@ export class SayItService {
         }
         else{
           console.log("new category");
-          this.addCategory(data[i]);
+          var tmp = [];
+          tmp = this.addCategory(data[i]);
+          this.updateCategoryWithActions(this.categories[tmp[1]], data[i]['actions']);
         }
       }
     }

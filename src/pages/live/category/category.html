@@ -25,7 +25,7 @@
     </ion-card>
   </div>
   <ion-list *ngFor="let action of actions" inset>
-    <ion-card (click)="goToActionPage(action, category)">
+    <ion-card (tap)="goToActionPage(action, category)" (press)="goToActionPage(action, category)" (swipe)="goToActionPage(action, category)" (pan)="foo()">
       <img src="{{action.image}}"/>
       <ion-row no-padding>
         <ion-col>

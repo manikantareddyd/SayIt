@@ -35,21 +35,23 @@ export class Live2CategoryPage {
     //   action: action
     // });
   }
-
+  foo(){}
   goBack(){
     this.navCtrl.pop();
   }
   
   goNext(action){
-    var ind = this.actions.indexOf(action);
-    if(ind != this.actions.length - 1)
-      this.action = this.actions[ind+1];
+    var catkeys = Object.keys(this.actions);
+    var ind = catkeys.indexOf(action['key']);
+    if(ind != 0)
+      this.category = this.actions[catkeys[ind+1]];
   }
 
   goPrevious(action){
-    var ind = this.actions.indexOf(action);
+    var catkeys = Object.keys(this.actions);
+    var ind = catkeys.indexOf(action['key']);
     if(ind != 0)
-      this.action = this.actions[ind-1];
+      this.category = this.actions[catkeys[ind-1]];
   }
 
 

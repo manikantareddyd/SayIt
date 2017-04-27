@@ -12,6 +12,7 @@ import { LiveHomePage } from '../pages/live/home/home';
 import { Live2HomePage } from '../pages/live2/home/home';
 
 import { SettingsPage } from "../pages/settings/settings";
+import { AboutPage } from "../pages/about/about";
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,7 +21,8 @@ export class MyApp {
 
   rootPage: any;
 
-  pages: Array<{title: string, component: any}>;
+  menu_pages: Array<{title: string, component: any, icon: string}>;
+  footer_pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(
     public platform: Platform, 
@@ -36,12 +38,16 @@ export class MyApp {
     });
     this.initializeApp();
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Mode 1', component: LiveHomePage },
-      { title: 'Mode 2', component: Live2HomePage },
-      { title: 'Builder', component: BuilderHomePage },
-      { title: 'Share', component: ShareHomePage}, 
-      { title: 'Settings', component: SettingsPage}
+    this.menu_pages = [
+      { title: 'Mode 1', component: LiveHomePage, icon: 'moon' },
+      { title: 'Mode 2', component: Live2HomePage, icon: 'planet' },
+      { title: 'Builder', component: BuilderHomePage, icon: 'build' },
+      { title: 'Share', component: ShareHomePage, icon: 'share'}
+    ];
+
+    this.footer_pages = [
+      { title: 'Settings', component: SettingsPage, icon:'settings'},
+      { title: 'About', component: AboutPage, icon: 'thumbs-up'}
     ];
   
   }

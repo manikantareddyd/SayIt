@@ -41,6 +41,8 @@ export class LiveHomePage {
     });
   }
 
+  foo(){}
+
   goToCategoryPage(category){
     this.navCtrl.push(LiveCategoryPage, {
       category: category

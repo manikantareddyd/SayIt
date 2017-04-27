@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
 import { MyApp } from './app.component';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
@@ -33,6 +34,7 @@ import { ShareSendPage } from '../pages/share/send/send';
 
 
 import { SettingsPage } from '../pages/settings/settings';
+import { AboutPage } from '../pages/about/about';
 
 import { LiveHomePage } from '../pages/live/home/home';
 import { LiveCategoryPage } from '../pages/live/category/category';
@@ -47,6 +49,7 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     MyApp,
     BuilderHomePage,
     SettingsPage,
+    AboutPage,
 
     ShareHomePage,
     ShareLoadPage,
@@ -74,6 +77,7 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     MyApp,
     BuilderHomePage,
     SettingsPage,
+    AboutPage,
     
     ShareHomePage,
     ShareLoadPage,

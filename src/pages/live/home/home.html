@@ -19,7 +19,7 @@
     </ion-card>
   </div>
   <ion-list *ngFor="let category of categories" inset>
-    <ion-card (click)="goToCategoryPage(category)">
+    <ion-card (tap)="goToCategoryPage(category)" (press)="goToCategoryPage(category)" (swipe)="goToCategoryPage(category)" (pan)="foo()">
       <img src="{{category.image}}"/>
       <ion-row no-padding>
         <ion-col>

@@ -33,6 +33,8 @@ export class LiveCategoryPage {
     // });
   }
 
+  foo(){}
+
   goBack(){
     this.navCtrl.pop();
   }
