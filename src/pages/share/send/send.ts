@@ -72,14 +72,14 @@ export class ShareSendPage {
       tmpCategory = JSON.parse(JSON.stringify(categories[i]));
       tmpCategory.actions = [];
       tmpCategory.key = 0;
-      tmpCategory.image = "";
+      tmpCategory.image = this.sayItService.defaultImg;
       for(j=0;j<categories[i].actions.length;j++)
       {
         if(categories[i].actions[j]['check'] == true)
         {
           t = 1;
           tmpAction = JSON.parse(JSON.stringify(categories[i].actions[j]));
-          tmpAction.image = "";
+          tmpAction.image = this.sayItService.defaultImg;
           tmpAction.key = 0;
           tmpCategory.actions.push(tmpAction);
         }

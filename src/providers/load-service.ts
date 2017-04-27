@@ -34,9 +34,9 @@ export class LoadService {
       if (this.platform.is('android')) 
       {
         this.filepath.resolveNativePath(uri)
-        .then(filePath => {
-          console.log(filePath);
-          let currentName = uri.substring(uri.lastIndexOf('/') + 1);
+        .then((filePath) => {
+          console.log('file path',filePath);
+          let currentName = filePath.substring(filePath.lastIndexOf('/') + 1);
           let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
           console.log(correctPath, currentName);
           this.readFromFile(correctPath, currentName);
@@ -44,7 +44,7 @@ export class LoadService {
           console.log(er, "couldn't resolve");
         });
       }else {
-        var currentName = uri.substr(0, uri.lastIndexOf('/') + 1);
+        var currentName = uri.substr( uri.lastIndexOf('/') + 1);
         var correctPath = uri.substr(0, uri.lastIndexOf('/') + 1);
         this.readFromFile(correctPath, currentName);
       }
@@ -77,6 +77,7 @@ export class LoadService {
     if(currHash == actHash){
       console.log("Hash Match");
       this.sayItService.loadFromJSONData(currCat);
+      this.presentToast("Successfully Loaded New Actions");
     }
     else{
       this.presentToast("Invalid Data");
@@ -87,7 +88,7 @@ export class LoadService {
     let toast = this.toastCtrl.create({
       message: text,
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
     });
     toast.present();
   }

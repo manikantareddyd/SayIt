@@ -162,7 +162,7 @@ export class PictureService {
     let toast = this.toastCtrl.create({
       message: text,
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
     });
     toast.present();
   }

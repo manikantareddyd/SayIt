@@ -97,11 +97,11 @@ export class SayItService {
   */
 
   reset(){
-    this.storage.set('st.categories', this.defaultCats);
+    this.storage.set('st.categories', []);
     // this.storage.set('st.fBoot', 0);
   }
   generateCategoryKey(){
-    var last = this.categories.length - 1;
+    var last = Object.keys(this.categories).length - 1;
     var newKey = 0;
     if(last > -1) newKey = this.categories[last]['key'] + 1;
     return newKey;
@@ -143,11 +143,16 @@ export class SayItService {
     return this.getCategoriesArray();
   }
 
-  updateCategoryWithActions(category){
-    var categoryKey = categoryKey;
-    this.categories[categoryKey]['actions'] = category['actions'];
-    this.storage.set(this.KEY_CATEGORIES, this.categories);
-    return this.getCategoriesArray();
+  updateCategoryWithActions(original_category, new_actions)
+  {
+    console.log("new actions", new_actions, new_actions[0], new_actions.length);
+    var i = 0;
+    while(i < new_actions.length)
+    {
+      console.log("i", i, "Action", new_actions[i], "cat", original_category);
+      this.addAction(new_actions[i], original_category);
+      i++;
+    }
   }
 
   getCategories(){
@@ -167,7 +172,7 @@ export class SayItService {
 
 /* Actions Start Here */
   generateActionKey(category){
-    var last = category['actions'].length - 1;
+    var last = Object.keys(category['actions']).length - 1;
     var newKey = 0;
     if(last > -1) newKey = category['actions'][last]['key'] + 1;
     return newKey;
@@ -229,15 +234,16 @@ export class SayItService {
     try{
       for(i=0; i<data.length; i++){
         check = this.checkIfCategoryPresent(data[i]);
-        if(!check[0]){
-          console.log("new category");
-          this.addCategory(data[i]);
+        if(check[0])
+        {
+          data[i]['key']=this.categories[check[1]]['key'];
+          data[i]['image'] = this.defaultImg;
+          console.log("cat exists. Updating", data[i]['actions']);
+          this.updateCategoryWithActions(this.categories[check[1]], data[i]['actions']);          
         }
         else{
-          data[i]['key']=this.categories[check[1]]['key'];
-          data[i]['image'] = this.categories[check[1]]['image'];
-          console.log("cat exists. Updating");
-          this.updateCategoryWithActions(data[i]);
+          console.log("new category");
+          this.addCategory(data[i]);
         }
       }
     }
@@ -248,12 +254,17 @@ export class SayItService {
     
   }
 
-  checkIfCategoryPresent(category){
+  checkIfCategoryPresent(category)
+  {
     var i=0;
-    for(i=0; i<this.categories.length; i++){
-      if(this.categories[i]['title'] == category['title'])
-        return [true, i];
-    return [false, 0];
-    }
+    for(var catKey in this.categories)
+    {
+      console.log(this.categories[catKey]['title'], category['title'])
+      if(this.categories[catKey]['title'] == category['title'])
+      {
+        return [1, catKey];
+      }
+    } 
+    return [0, 0];
   }
 }
