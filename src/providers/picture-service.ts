@@ -39,8 +39,8 @@ export class PictureService {
       sourceType: sourceType,
       allowEdit: true,
       encodingType: this.camera.EncodingType.JPEG,
-      targetWidth: 300,
-      targetHeight: 300,
+      targetWidth: 700,
+      targetHeight: 500,
       saveToPhotoAlbum: false,
       correctOrientation:true
     };
@@ -103,8 +103,8 @@ export class PictureService {
       sourceType: sourceType,
       allowEdit: true,
       encodingType: this.camera.EncodingType.JPEG,
-      targetWidth: 300,
-      targetHeight: 300,
+      targetWidth: 700,
+      targetHeight: 500,
       saveToPhotoAlbum: false,
       correctOrientation:true
     };
