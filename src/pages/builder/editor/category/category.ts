@@ -31,7 +31,8 @@ export class EditorCategoryPage {
       this.actions = this.sayItService.getActionsArray(this.category);
     });
     this.events.subscribe('reloadCategoryImage', (category)=>{
-      this.category['image'] = category['image'];
+      // this.category['image'] = category['image'];
+      // this.navCtrl.pop();
     })
   }
 
