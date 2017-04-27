@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 
 import { NavController, Events } from 'ionic-angular';
 import { SayItService } from '../../../providers/sayit-service';
-
+import { IntroPage } from '../../intro/intro';
 import { LiveCategoryPage } from '../category/category';
+
 @Component({
   selector: 'page-live-home',
   templateUrl: 'home.html'
@@ -48,5 +49,9 @@ export class LiveHomePage {
       category: category
     });
   }
+
+  ionViewDidLoad() {
+  
+}
 
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, Events } from 'ionic-angular';
 import { SayItService } from '../../../providers/sayit-service';
-
+import { IntroPage } from '../../intro/intro';
 import { Live2CategoryPage } from '../category/category';
 @Component({
   selector: 'page-live2-home',
@@ -48,18 +48,30 @@ export class Live2HomePage {
     });
   }
 
-  goNext(category){
-    var catkeys = Object.keys(this.categories);
-    var ind = catkeys.indexOf(category['key']);
-    if(ind != 0)
-      this.category = this.categories[catkeys[ind+1]];
+  // goNext(category){
+  //   var catkeys = Object.keys(this.categories);
+  //   var ind = catkeys.indexOf(category['key']);
+  //   if(ind != 0)
+  //     this.category = this.categories[catkeys[ind+1]];
+  // }
+
+  // goPrevious(category){
+  //   var catkeys = Object.keys(this.categories);
+  //   var ind = catkeys.indexOf(category['key']);
+  //   if(ind != 0)
+  //     this.category = this.categories[catkeys[ind-1]];
+  // }
+
+   goNext(category){
+    var ind = this.categories.indexOf(category);
+    if(ind != this.categories.length - 1)
+      this.category = this.categories[ind+1];
   }
 
   goPrevious(category){
-    var catkeys = Object.keys(this.categories);
-    var ind = catkeys.indexOf(category['key']);
+    var ind = this.categories.indexOf(category);
     if(ind != 0)
-      this.category = this.categories[catkeys[ind-1]];
+      this.category = this.categories[ind-1];
   }
 
 }

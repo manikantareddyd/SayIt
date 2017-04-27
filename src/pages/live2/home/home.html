@@ -21,7 +21,7 @@
         No Categories Available
       </ion-card-header>
     </ion-card>
-    <ion-card *ngIf="categories.length > 0" (tap)="goToCategoryPage(category)" (press)="goToCategoryPage(category)" (swipe)="goToCategoryPage(category)" (pan)="foo()">
+    <ion-card *ngIf="categories.length > 0" (tap)="goToCategoryPage(category)" (press)="goToCategoryPage(category)">
       <img src="{{category.image}}"/>
       <ion-row no-padding>
         <ion-col>
@@ -38,10 +38,10 @@
           <path d="M50,86 54,78 46,78Z" fill="rgba(0,0,0,0.8)" />
           <path d="M14,50 22,54 22,46Z" fill="rgba(0,0,0,0.8)" />
           <path d="M86,50 78,54 78,46Z" fill="rgba(0,0,0,0.8)" />
-          <polygon points='5,5 50,50 95,5'    fill-opacity="0.0" (tap)="goPrevious(category)" (press)="goPrevious(category)" (swipe)="goPrevious(category)" (pan)="foo()" />
+          <polygon points='5,5 50,50 95,5'    fill-opacity="0.0" (tap)="goPrevious(category)" (press)="goPrevious(category)"/>
           <polygon points='5,5 50,50 5,95'    fill-opacity="0.0" />
-          <polygon points='5,95 50,50 95,95'  fill-opacity="0.0" (tap)="goNext(category)" (press)="goNext(category)" (swipe)="goNext(category)" (pan)="foo()"/>
-          <polygon points='95,5 50,50 95,95'  fill-opacity="0.0" (tap)="goToCategoryPage(category)" (press)="goToCategoryPage(category)" (swipe)="goToCategoryPage(category)" (pan)="foo()" />
+          <polygon points='5,95 50,50 95,95'  fill-opacity="0.0" (tap)="goNext(category)" (press)="goNext(category)"/>
+          <polygon points='95,5 50,50 95,95'  fill-opacity="0.0" (tap)="goToCategoryPage(category)" (press)="goToCategoryPage(category)"/>
           
         </svg>
       </ion-col>

@@ -40,18 +40,30 @@ export class Live2CategoryPage {
     this.navCtrl.pop();
   }
   
+  // goNext(action){
+  //   var catkeys = Object.keys(this.actions);
+  //   var ind = catkeys.indexOf(action['key']);
+  //   if(ind != 0)
+  //     this.category = this.actions[catkeys[ind+1]];
+  // }
+
+  // goPrevious(action){
+  //   var catkeys = Object.keys(this.actions);
+  //   var ind = catkeys.indexOf(action['key']);
+  //   if(ind != 0)
+  //     this.category = this.actions[catkeys[ind-1]];
+  // }
+
   goNext(action){
-    var catkeys = Object.keys(this.actions);
-    var ind = catkeys.indexOf(action['key']);
-    if(ind != 0)
-      this.category = this.actions[catkeys[ind+1]];
+    var ind = this.actions.indexOf(action);
+    if(ind != this.actions.length - 1)
+      this.action = this.actions[ind+1];
   }
 
   goPrevious(action){
-    var catkeys = Object.keys(this.actions);
-    var ind = catkeys.indexOf(action['key']);
+    var ind = this.actions.indexOf(action);
     if(ind != 0)
-      this.category = this.actions[catkeys[ind-1]];
+      this.action = this.actions[ind-1];
   }
 
 

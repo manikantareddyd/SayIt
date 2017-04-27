@@ -5,10 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 import { ModeService } from '../providers/mode-service';
-
+import { SayItService } from '../providers/sayit-service';
 import { BuilderHomePage } from '../pages/builder/home/home';
 import { ShareHomePage } from '../pages/share/home/home';
 import { LiveHomePage } from '../pages/live/home/home';
+import { IntroPage } from '../pages/intro/intro';
 import { Live2HomePage } from '../pages/live2/home/home';
 
 import { SettingsPage } from "../pages/settings/settings";
@@ -27,6 +28,7 @@ export class MyApp {
   constructor(
     public platform: Platform, 
     public modeservice: ModeService,
+    public sayItService: SayItService,
     public splashscreen: SplashScreen,
     public statusbar: StatusBar
     ) {
@@ -35,7 +37,16 @@ export class MyApp {
         this.rootPage = LiveHomePage;
       else
         this.rootPage = Live2HomePage;
+      
+      this.sayItService.storage.get('intro-done').then(done => {
+        if (!done) {
+          this.sayItService.storage.set('intro-done', true);
+          this.nav.setRoot(IntroPage);
+        }
+      });
     });
+
+
     this.initializeApp();
     // used for an example of ngFor and navigation
     this.menu_pages = [
@@ -46,6 +57,7 @@ export class MyApp {
     ];
 
     this.footer_pages = [
+      { title: 'Help', component: IntroPage, icon:'help-circle'},
       { title: 'Settings', component: SettingsPage, icon:'settings'},
       { title: 'About', component: AboutPage, icon: 'thumbs-up'}
     ];

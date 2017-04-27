@@ -35,6 +35,7 @@ import { ShareSendPage } from '../pages/share/send/send';
 
 import { SettingsPage } from '../pages/settings/settings';
 import { AboutPage } from '../pages/about/about';
+import { IntroPage } from '../pages/intro/intro';
 
 import { LiveHomePage } from '../pages/live/home/home';
 import { LiveCategoryPage } from '../pages/live/category/category';
@@ -50,6 +51,7 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     BuilderHomePage,
     SettingsPage,
     AboutPage,
+    IntroPage,
 
     ShareHomePage,
     ShareLoadPage,
@@ -78,6 +80,7 @@ import { Live2ActionPage } from '../pages/live2/action/action';
     BuilderHomePage,
     SettingsPage,
     AboutPage,
+    IntroPage,
     
     ShareHomePage,
     ShareLoadPage,
