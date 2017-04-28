@@ -14,17 +14,14 @@ export class SayItService {
             {
               "title": "Food",
               "image": "assets/boot/food.png",
-              "key":0,
               "actions":[
                 {
                   "title":"Good Food",
-                  "key":0,
                   "text": "This Food is delicious",
                   "image": "assets/boot/good_food.png"
                 },
                 {
                   "title":"Hot Food",
-                  "key":1,
                   "text": "The Food is really Hot",
                   "image": "assets/boot/hot_food.png"
                 }
@@ -33,11 +30,9 @@ export class SayItService {
             {
               "title": "Water",
               "image": "assets/boot/water.png",
-              "key":1,
               "actions":[
                 {
                   "title":"Thirsty",
-                  "key":0,
                   "text": "I am very thirsty",
                   "image": "assets/boot/thirsty.png"
                 }
@@ -120,7 +115,8 @@ export class SayItService {
     return values;
   }
 
-  addCategory(category){
+  addCategory(categoryNew){
+    var category = JSON.parse(JSON.stringify(categoryNew));
     if(category['title'] == ''){
       return [this.getCategoriesArray(),0];
     }
@@ -133,13 +129,15 @@ export class SayItService {
     return [this.getCategoriesArray(), categoryKey];
   }
 
-  removeCategory(category){
+  removeCategory(categoryNew){
+     var category = JSON.parse(JSON.stringify(categoryNew));
     delete this.categories[category['key']];
     this.storage.set(this.KEY_CATEGORIES, this.categories);
     return this.getCategoriesArray();
   }
 
-  updateCategory(category){
+  updateCategory(categoryNew){
+     var category = JSON.parse(JSON.stringify(categoryNew));
     if(category['title'] == ''){
       return this.getCategoriesArray();
     }
@@ -177,14 +175,16 @@ export class SayItService {
   }
 
 /* Actions Start Here */
-  generateActionKey(category){
+  generateActionKey(categoryNew){
+    var category = JSON.parse(JSON.stringify(categoryNew));
     var last = Object.keys(category['actions']).length - 1;
     var newKey = 0;
     if(last > -1) newKey = category['actions'][last]['key'] + 1;
     return newKey;
   }
 
-  getActionsArray(category){
+  getActionsArray(categoryNew){
+    var category = JSON.parse(JSON.stringify(categoryNew));
     var values = []
     for(var actionKey in category['actions']){
       values.push(category['actions'][actionKey])
@@ -192,7 +192,9 @@ export class SayItService {
     return values;
   }
 
-  addAction(action, category){
+  addAction(actionNew, categoryNew){
+     var category = JSON.parse(JSON.stringify(categoryNew));
+      var action = JSON.parse(JSON.stringify(actionNew));
     if(action['title'] == '' ){
       return this.getActionsArray(category);
     }
@@ -206,7 +208,9 @@ export class SayItService {
     return this.getActionsArray(category);
   }
 
-  removeAction(action, category){
+  removeAction(actionNew, categoryNew){
+    var category = JSON.parse(JSON.stringify(categoryNew));
+    var action = JSON.parse(JSON.stringify(actionNew));
     delete category['actions'][action['key']];
     let categoryKey = category['key'];
     this.categories[categoryKey] = category;
@@ -214,7 +218,9 @@ export class SayItService {
     return this.getActionsArray(category);
   }
 
-  updateAction(action, category){
+  updateAction(actionNew, categoryNew){
+    var category = JSON.parse(JSON.stringify(categoryNew));
+    var action = JSON.parse(JSON.stringify(actionNew));
     if(action['title'] == '' ){
       return this.getActionsArray(category);
     }
@@ -232,7 +238,8 @@ export class SayItService {
     );
   }
 
-  loadFromJSONData(data){
+  loadFromJSONData(dataNew){
+    var data = JSON.parse(JSON.stringify(dataNew));
     var i=0;
     var currentCategories = this.categories;
     var check, index;
@@ -262,8 +269,9 @@ export class SayItService {
     
   }
 
-  checkIfCategoryPresent(category)
+  checkIfCategoryPresent(categoryNew)
   {
+    var category = JSON.parse(JSON.stringify(categoryNew));
     var i=0;
     for(var catKey in this.categories)
     {
