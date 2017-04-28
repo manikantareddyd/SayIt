@@ -28,8 +28,10 @@ export class EditorCategoryPage {
     this.category = this.navParams.get('category');
     this.mode = this.navParams.get('mode');
     this.actions = this.sayItService.getActionsArray(this.category);
-    this.events.subscribe('reloadEditorCategoryData',()=>{
-      this.actions = this.sayItService.getActionsArray(this.category);
+    this.events.subscribe('reloadEditorCategoryData',(newactions)=>{
+      console.log("Edited");
+      this.actions = newactions;
+      // this.actions = this.sayItService.getActionsArray(this.category);
     });
     this.events.subscribe('reloadCategoryImage', (category)=>{
       // this.category['image'] = category['image'];

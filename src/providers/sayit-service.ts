@@ -193,8 +193,8 @@ export class SayItService {
   }
 
   addAction(actionNew, categoryNew){
-     var category = JSON.parse(JSON.stringify(categoryNew));
-      var action = JSON.parse(JSON.stringify(actionNew));
+    var category = JSON.parse(JSON.stringify(categoryNew));
+    var action = JSON.parse(JSON.stringify(actionNew));
     if(action['title'] == '' ){
       return this.getActionsArray(category);
     }

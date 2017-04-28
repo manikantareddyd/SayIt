@@ -67,13 +67,13 @@ export class EditorActionPage {
   updateAction(action, category, mode){
     this.action = action;
     if(mode == "EDIT"){
-      this.sayItService.updateAction(action, category);
+      var newactions = this.sayItService.updateAction(action, category);
     }
     else if(mode == "ADD"){
-      this.sayItService.addAction(action, category);
+      var newactions = this.sayItService.addAction(action, category);
     }
+    this.events.publish('reloadEditorCategoryData', newactions);
     this.presentToast("Action Added");
-    this.events.publish('reloadEditorCategoryData');
     this.navCtrl.pop();
   }
 
