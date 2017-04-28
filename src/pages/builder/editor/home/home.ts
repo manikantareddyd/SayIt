@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, Events } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController, Events } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
 import { EditorCategoryPage } from '../category/category';
 
@@ -21,6 +21,7 @@ export class EditorHomePage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public events: Events,
+    public toastCtrl: ToastController,
     public sayItService: SayItService
     ) {
     this.events.subscribe('reloadEditorHomeData',()=>{
@@ -59,6 +60,7 @@ export class EditorHomePage {
           handler: () => {
             //console.log('Agree clicked');
             this.categories = this.sayItService.removeCategory(category);
+            this.presentToast("Category Deleted");
           }
         }
       ]
@@ -73,5 +75,12 @@ export class EditorHomePage {
     }
     return this.goToCategoryPage(category, "ADD");
   }
-
+  presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
 }

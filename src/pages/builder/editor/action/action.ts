@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, Events, ActionSheetController } from 'ionic-angular';
+import { NavController, ToastController, NavParams, AlertController, Events, ActionSheetController } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
 import { PictureService } from '../../../../providers/picture-service';
 
@@ -18,6 +18,7 @@ export class EditorActionPage {
     public alertCtrl: AlertController,
     public actionSheetCtrl: ActionSheetController,
     public events: Events,
+    public toastCtrl: ToastController,
     public sayItService: SayItService,
     public pictureService: PictureService
     ) {
@@ -35,6 +36,7 @@ export class EditorActionPage {
 
   speakAction(action){
     this.sayItService.speakAction(action);
+    this.presentToast(action["text"]);
   }
 
   deleteAction(action, category){
@@ -53,6 +55,7 @@ export class EditorActionPage {
           handler: () => {
             //console.log('Agree clicked');
             this.sayItService.removeAction(action, category);
+            this.presentToast("Action Deleted");
             this.navCtrl.pop();
           }
         }
@@ -69,6 +72,7 @@ export class EditorActionPage {
     else if(mode == "ADD"){
       this.sayItService.addAction(action, category);
     }
+    this.presentToast("Action Added");
     this.events.publish('reloadEditorCategoryData');
     this.navCtrl.pop();
   }
@@ -78,6 +82,7 @@ export class EditorActionPage {
     action.image = this.sayItService.defaultImg;
     this.action = action;
     this.sayItService.updateAction(action, category);
+    this.presentToast("Action Picture Deleted");
     this.events.publish('reloadEditorCategoryData');
   }
   
@@ -104,5 +109,14 @@ export class EditorActionPage {
       ]
     });
     actionSheet.present();
+  }
+
+  presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }

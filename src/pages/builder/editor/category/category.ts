@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, Events, ActionSheetController } from 'ionic-angular';
+import { NavController, ToastController, NavParams, AlertController, Events, ActionSheetController } from 'ionic-angular';
 import { SayItService } from '../../../../providers/sayit-service';
 import { PictureService } from '../../../../providers/picture-service';
 import { EditorActionPage } from '../action/action';
@@ -19,6 +19,7 @@ export class EditorCategoryPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public actionSheetCtrl: ActionSheetController,
+    public toastCtrl: ToastController,
     public events: Events,
     public sayItService: SayItService,
     public pictureService: PictureService
@@ -65,6 +66,7 @@ export class EditorCategoryPage {
           handler: () => {
             //console.log('Agree clicked');
             this.actions = this.sayItService.removeAction(action, category);
+            this.presentToast("Action Deleted");
           }
         }
       ]
@@ -96,6 +98,7 @@ export class EditorCategoryPage {
           handler: () => {
             //console.log('Agree clicked');
             this.sayItService.removeCategory(category);
+            this.presentToast("Category Deleted");
             this.navCtrl.pop();
           }
         }
@@ -114,6 +117,7 @@ export class EditorCategoryPage {
         this.sayItService.addCategory(category);
       }
     }
+    this.presentToast("Category Added");
     this.events.publish('reloadEditorHomeData');
     this.navCtrl.pop();
   }
@@ -123,8 +127,16 @@ export class EditorCategoryPage {
     this.category = category;
     this.sayItService.updateCategory(category);
     this.events.publish('reloadEditorHomeData');
+    this.presentToast("Category Image Deleted");
   }
-  
+  presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
   presentImageActionSheet(category) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',

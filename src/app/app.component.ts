@@ -33,15 +33,20 @@ export class MyApp {
     public statusbar: StatusBar
     ) {
     this.modeservice.getMode().then((mode)=>{
-      if(mode=="mode1")
-        this.rootPage = LiveHomePage;
-      else
-        this.rootPage = Live2HomePage;
       
       this.sayItService.storage.get('intro-done').then(done => {
         if (!done) {
+          console.log("new boot");
+          // this.sayItService.loadFromJSONData(this.sayItService.defaultCats);
           this.sayItService.storage.set('intro-done', true);
-          this.nav.setRoot(IntroPage);
+          this.rootPage = IntroPage;
+          // this.nav.setRoot(IntroPage);
+        }
+        else{
+          if(mode=="mode1")
+            this.rootPage = LiveHomePage;
+          else
+            this.rootPage = Live2HomePage;
         }
       });
     });

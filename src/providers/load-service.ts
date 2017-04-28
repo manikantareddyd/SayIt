@@ -87,7 +87,7 @@ export class LoadService {
   presentToast(text) {
     let toast = this.toastCtrl.create({
       message: text,
-      duration: 5000,
+      duration: 3000,
       position: 'bottom'
     });
     toast.present();

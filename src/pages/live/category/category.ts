@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { SayItService } from '../../../providers/sayit-service';
 import { LiveActionPage } from '../action/action';
 /*
@@ -18,7 +18,8 @@ export class LiveCategoryPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public sayItService: SayItService
+    public sayItService: SayItService,
+    public toastCtrl: ToastController
   ) {
     this.category = this.navParams.get('category');
     this.actions = this.sayItService.getActionsArray(this.category);
@@ -28,6 +29,7 @@ export class LiveCategoryPage {
   }
   goToActionPage(action, category){
     this.sayItService.speakAction(action);
+    this.presentToast(action["text"]);
     // this.navCtrl.push(LiveActionPage, {
     //   action: action
     // });
@@ -39,5 +41,13 @@ export class LiveCategoryPage {
     this.navCtrl.pop();
   }
 
+presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
 
 }

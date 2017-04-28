@@ -14,14 +14,17 @@ export class SayItService {
             {
               "title": "Food",
               "image": "assets/boot/food.png",
+              "key":0,
               "actions":[
                 {
                   "title":"Good Food",
+                  "key":0,
                   "text": "This Food is delicious",
                   "image": "assets/boot/good_food.png"
                 },
                 {
                   "title":"Hot Food",
+                  "key":1,
                   "text": "The Food is really Hot",
                   "image": "assets/boot/hot_food.png"
                 }
@@ -30,9 +33,11 @@ export class SayItService {
             {
               "title": "Water",
               "image": "assets/boot/water.png",
+              "key":1,
               "actions":[
                 {
                   "title":"Thirsty",
+                  "key":0,
                   "text": "I am very thirsty",
                   "image": "assets/boot/thirsty.png"
                 }
